@@ -1,6 +1,6 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE TO BECOME TEACHING TEMPLATE *****************************************
-// Edit Date:   September 19, 2018 @ 08:09
+// Edit Date:   September 19, 2018 @ 14:41
 // Clone Date:	September 18, 2018 @ 08:38
 // Team Name:   _____
 // Team Number: _____
@@ -37,6 +37,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 //
 // DEFINE Class
 // FORMAT: access level, class class_name, extends name of class this new class extends (if any) {
+// NOTE:    All JAVA files must have at least one CLASS
 public class Template_AUTON_v06 extends LinearOpMode {
     //
     // DECLARE OpMode MEMBERS
@@ -102,11 +103,10 @@ public class Template_AUTON_v06 extends LinearOpMode {
         //
         // INITIALIZE HARDWARE VARIABLES
         // FORMAT: hardware variable name = location within hardware map (" value as defined in hardware map ");
-        //   Values after 'get' MUST match EXACTLY the names used when the
-        //      robot configuration was built using the FTC Robot Controler app
-        //      on the robot controller phone.
-        //   In this code, each hardware variable name matches the name of the corresponding item in the hardware map. This
-        //      is not required, but is recommended because it keeps communication clear and usage consistent.
+        // - Values after 'get' MUST match EXACTLY the names used when the
+        //   robot configuration was built using the FTC Robot Controler app on the robot controller phone.
+        // - In this code, each hardware variable name matches the name of the corresponding item in the hardware map. This
+        //   is not required, but is recommended because it keeps communication clear and usage consistent.
         leftDriveMotor  = hardwareMap.dcMotor.get("leftDriveMotor");
         rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
         sweeperMotor    = hardwareMap.dcMotor.get("sweeperMotor");
@@ -180,13 +180,16 @@ public class Template_AUTON_v06 extends LinearOpMode {
     //****************************************************************************************************************
     // BEGIN LOCALLY-DEFINED METHODS
     //****************************************************************************************************************
-    //   Methods are small sections of code that are written once but can be used ("called")
-    //   by the program multiple times. A method can have all of its values set internally (see robotStop, below)
-    //   or use values passed to it each time the program calls the method (see driveForward, below). Variables allow the
-    //   method's code to be written once but adapt to different situations in the section of code that is calling it.
+    // Methods are sections of code that are written once but can be used ("called") by the program multiple times. 
+    // - A method can have all of its values set internally (see robotStop, below)
+    //   or use values passed to it each time the program calls the method (see driveForward, below).
+    // - Variables allow the METHOD's code to be written once but adapt to different situations in the
+    //   section of code that is calling it.
     //
-    // METHOD stopRobot()
-    //    stop all motors at current location by setting all power to zero
+    // ********                     
+    // METHOD:  stopRobot()
+    // PURPOSE: Stop all motors at current location by setting all power to zero
+    // FORMAT:  access level, return type or void, methodName(arguments){
     public void stopRobot(){                                // The empty "()" section means that this method
         leftDriveMotor.setPower(0);                         //      does not rely on values passed into it
         rightDriveMotor.setPower(0);                        //      from the section of code that calls it,
@@ -194,8 +197,11 @@ public class Template_AUTON_v06 extends LinearOpMode {
     }                                                       
     // END of METHOD stopRobot
     //
-    // METHOD adjustTimeBasedOnPower(Time,Power)                
-    public double adjustTimeBasedOnPower(double Time, double Power){    // Adjust the Time value based on the requested Power 
+    // ********
+    // METHOD:  adjustTimeBasedOnPower(Time,Power)
+    // PURPOSE: Adjust the Time value based on the requested Power
+    // FORMAT:  access level, return type or void, methodName(arguments){
+    public double adjustTimeBasedOnPower(double Time, double Power){    // double
                                                                         // NOTE: For clarity, separate IF statements are used below.
                                                                         //      Nested IF / ELSE IF statements could be used
         if (Power == DRIVE_POWER_MEDIUM){                             
@@ -209,7 +215,10 @@ public class Template_AUTON_v06 extends LinearOpMode {
     }
     // END of METHOD adjustTimeBasedOnPower
     //
-    // METHOD driveForward(Time,Power)
+    // ********
+    // METHOD:  driveForward(Time,Power)
+    // PURPOSE: Adjust the Time value based on the requested Power
+    // FORMAT:  access level, return type or void, methodName(arguments){
     public void driveForward(double Time, double Power){    // The variable names Time and Power will be assigned
                                                             //      to the values passed into the method, in the order
                                                             //      they are received
