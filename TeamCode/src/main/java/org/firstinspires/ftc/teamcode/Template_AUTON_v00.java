@@ -30,11 +30,11 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 // 
 // DEFINE OpMode
 // FORMAT: @type(name,group) 
-@Autonomous(name="TemplateAutonGenericV05", group="Derry_FTC_Templates")  
+@Autonomous(name="Template_AUTON_v00", group="Derry_FTC_Templates")
 //
 // DEFINE Class
 // FORMAT: access level, class name, name of class this new class extends (if any)
-public class TemplateAutonGenericV05 extends LinearOpMode {
+public class Template_AUTON_v00 extends LinearOpMode {
     //
     // DECLARE OpMode MEMBERS
     //   Utilities
