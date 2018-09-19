@@ -1,5 +1,6 @@
+//*************************************************************************************************************************
 //***************************************** THIS FILE TO BECOME TEACHING TEMPLATE *****************************************
-// Edit Date:   September 17, 2018 @ 14:21
+// Edit Date:   September 19, 2018 @ 08:09
 // Clone Date:	September 18, 2018 @ 08:38
 // Team Name:   _____
 // Team Number: _____
@@ -12,6 +13,7 @@
 //              5. Drive forward onto object's original location, then stop
 //              6. Set gripper to open position
 //              7. Wait for Teleop
+//*************************************************************************************************************************
 //*************************************************************************************************************************
 //
 // DEFINE CODE PACKAGE
@@ -47,15 +49,15 @@ public class Template_AUTON_v06 extends LinearOpMode {
     DcMotor leftDriveMotor  = null;                         // One line for each hardware item
     DcMotor rightDriveMotor = null;                         // Name before '=' MUST match EXACTLY the names used when the
     DcMotor sweeperMotor    = null;                         //   robot configuration was built using the FTC Robot Controler app
-    Servo gripperServo      = null;                         //   on the robot controller phone
-    Servo sweeperServo      = null;
-    Servo armServo          = null;
+    Servo   gripperServo    = null;                         //   on the robot controller phone
+    Servo   sweeperServo    = null;
+    Servo   armServo        = null;
     //
     // DEFINE CODE CONSTANTS
-    // NOTE: Constants should generally be defined here (outside of METHOD bodies) 
+    // NOTE:    Constants should generally be defined here (outside of METHOD bodies) 
     //          instead of inside runOpMode() or any other METHOD,
     //          especially if you ever want to access them from outside of this CLASS
-    // FORMAT: access level, static yes/no, final yes/no, value type, value name, assigned value
+    // FORMAT:  access level, static yes/no, final yes/no, value type, value name, assigned value
     //          - public means it can be accessed from other classes
     //          - static means there is only one copy no matter how many instances of the CLASS you create
     //          - final means its value never changes (constant)
@@ -87,8 +89,8 @@ public class Template_AUTON_v06 extends LinearOpMode {
     //
     @Override
     // Override is a note to the compiler stating that you expect that you are replacing a METHOD
-    //   with the same name in the parent (extends ______ class) with this METHOD. That way if you typo/change
-    //   the METHOD signature you will get an error, stopping you from having two METHODS when you expect only one.
+    //      with the same name in the parent (extends ______ class) with this METHOD. That way if you typo/change
+    //      the METHOD signature you will get an error, stopping you from having two METHODS when you expect only one.
     //
     // call runOpMode() METHOD from the parent CLASS of LinearOpMode
     public void runOpMode() throws InterruptedException  {              // "Interrupted exception" keeps the program 
@@ -136,7 +138,7 @@ public class Template_AUTON_v06 extends LinearOpMode {
         //
         // WAIT for driver to press PLAY
         waitForStart();                     // The waitForStart() METHOD is part of the LinearOpMode CLASS,
-                                            //      which is defined elsewhere in the FTC resrouce code
+                                            //      which is defined elsewhere in the FTC resource code
         //
         //****************************************************************************************************************
         // AFTER driver presses PLAY, execute code below this line
@@ -196,12 +198,12 @@ public class Template_AUTON_v06 extends LinearOpMode {
     public double adjustTimeBasedOnPower(double Time, double Power){    // Adjust the Time value based on the requested Power 
                                                                         // NOTE: For clarity, separate IF statements are used below.
                                                                         //      Nested IF / ELSE IF statements could be used
-        if (Power = DRIVE_POWER_MEDIUM){                             
-            Time = Time * DRIVE_TIME_ADJUSTER_FOR_POWER_MED;            //  Increase Time to compensate for reduced power
+        if (Power == DRIVE_POWER_MEDIUM){                             
+            Time = Time * DRIVE_TIME_ADJUSTER_FOR_POWER_MED;            //  Increase Time to compensate for reduced power, or
         }                                                               //  Leave Power unchanged if Power is not DRIVE_POWER_MEDIUM
                                                                         //
-        if (Power = DRIVE_POWER_SLOW){
-            Time = Time * DRIVE_TIME_ADJUSTER_FOR_POWER_SLOW;           //  Increase Time to compensate for reduced power
+        if (Power == DRIVE_POWER_SLOW){
+            Time = Time * DRIVE_TIME_ADJUSTER_FOR_POWER_SLOW;           //  Increase Time to compensate for reduced power, or
         }                                                               //  Leave Power unchanged if Power is not DRIVE_POWER_SLOW
         return Time;
     }
@@ -211,13 +213,14 @@ public class Template_AUTON_v06 extends LinearOpMode {
     public void driveForward(double Time, double Power){    // The variable names Time and Power will be assigned
                                                             //      to the values passed into the method, in the order
                                                             //      they are received
-                                                            //
-        adjustTimeBasedOnPower(Time,Power)                  // Send Time and Power to adjustTimeBasedOnPower METHOD
-                                                            //      to see if Time value should be adjusted
+        public double adjustedTime;                         // Declare new variable to hold result of
+                                                            //      adjustTimeBasedOnPower METHOD
+        adjustedTime = adjustTimeBasedOnPower(Time,Power)   // Set value of adjustedTime to result returned
+                                                            //      by adjustTimeBasedOnPower METHOD 
                                                             //
         leftDriveMotor.setPower(Power);                     // Run motor with passed Power value
         rightDriveMotor.setPower(Power);                    // Run motor with passed Power value
-        sleep((long) Time);                                 // Wait here in code for duration of passed Time value
+        sleep((long) adjustedTime);                         // Wait here in code for duration of passed Time value
                                                             //      (allows motors to turn for duration of Time)
     } 
     // END of METHOD driveForward
@@ -226,9 +229,10 @@ public class Template_AUTON_v06 extends LinearOpMode {
     public void spinRight(double Time, double Power){       // The variable names Time and Power will be assigned
                                                             //      to the values passed into the method, in the order
                                                             //      they are received
-                                                            //
-        adjustTimeBasedOnPower(Time,Power)                  // Send Time and Power to adjustTimeBasedOnPower METHOD
-                                                            //      to see if Time value should be adjusted
+        public double adjustedTime;                         // Declare new variable to hold result of
+                                                            //      adjustTimeBasedOnPower METHOD
+        adjustedTime = adjustTimeBasedOnPower(Time,Power)   // Set value of adjustedTime to result returned
+                                                            //      by adjustTimeBasedOnPower METHOD 
                                                             //
         leftDriveMotor.setPower(Power);                     // Run motor with passed Power value
         rightDriveMotor.setPower(-Power);                   // Run motor with passed Power value inverted
@@ -242,9 +246,10 @@ public class Template_AUTON_v06 extends LinearOpMode {
     public void spinLeft(long Time, double Power){          // The variable names Time and Power will be assigned
                                                             //      to the values passed into the method, in the order
                                                             //      they are received
-                                                            //
-        adjustTimeBasedOnPower(Time,Power)                  // Send Time and Power to adjustTimeBasedOnPower METHOD
-                                                            //      to see if Time value should be adjusted
+        public double adjustedTime;                         // Declare new variable to hold result of
+                                                            //      adjustTimeBasedOnPower METHOD
+        adjustedTime = adjustTimeBasedOnPower(Time,Power)   // Set value of adjustedTime to result returned
+                                                            //      by adjustTimeBasedOnPower METHOD 
                                                             //
         leftDriveMotor.setPower(-Power);                    // Run motor with passed Power value inverted
                                                             //      so motor will rotate in reverse
