@@ -1,6 +1,6 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE TO BECOME TEACHING TEMPLATE *****************************************
-// Edit Date:   September 19, 2018 @ 14:41
+// Edit Date:   September 19, 2018 @ 14:57
 // Clone Date:	September 18, 2018 @ 08:38
 // Team Name:   _____
 // Team Number: _____
@@ -233,8 +233,11 @@ public class Template_AUTON_v06 extends LinearOpMode {
                                                             //      (allows motors to turn for duration of Time)
     } 
     // END of METHOD driveForward
+    // ********
     //
-    // METHOD spinRight(Time,Power)
+    // METHOD:  spinRight(Time,Power)
+    // PURPOSE: Adjust the Time value based on the requested Power
+    // FORMAT:  access level, return type or void, methodName(arguments){
     public void spinRight(double Time, double Power){       // The variable names Time and Power will be assigned
                                                             //      to the values passed into the method, in the order
                                                             //      they are received
@@ -251,7 +254,9 @@ public class Template_AUTON_v06 extends LinearOpMode {
     }
     // END of METHOD spinRight 
     //
-    // METHOD spinLeft(Time,Power)
+    // METHOD:  spinLeft(Time,Power)
+    // PURPOSE: Adjust the Time value based on the requested Power
+    // FORMAT:  access level, return type or void, methodName(arguments){                     
     public void spinLeft(long Time, double Power){          // The variable names Time and Power will be assigned
                                                             //      to the values passed into the method, in the order
                                                             //      they are received
