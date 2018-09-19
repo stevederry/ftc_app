@@ -1,5 +1,6 @@
+//*******************************************************************************************************************
 //************************************** THIS FILE TO BECOME TEACHING TEMPLATE **************************************
-// Edit Date:   2018_09_18 @ 20:11
+// Edit Date:   2018_09_18 @ 20:12
 // Team Name:   __________
 // Team Number: __________
 // Code Type:   OpMode for AUTONOMOUS
@@ -11,6 +12,7 @@
 //              5. Drive forward onto object's original location, then stop
 //              6. Set gripper to open position
 //              7. Wait for Teleop
+//*******************************************************************************************************************
 //*******************************************************************************************************************
 //
 // DEFINE CODE PACKAGE
@@ -46,8 +48,8 @@ public class Template_AUTON_v00 extends LinearOpMode {
     DcMotor leftDriveMotor  = null;                         // One line for each hardware item
     DcMotor rightDriveMotor = null;                         // Values before '=' MUST match EXACTLY the names used when the
     DcMotor sweeperMotor    = null;                         //   robot configuration was built using the FTC Robot Controler app
-    Servo gripperServo      = null;                         //   on the robot controller phone
-    Servo sweeperServo      = null;                               
+    Servo   gripperServo    = null;                         //   on the robot controller phone
+    Servo   sweeperServo    = null;                               
     //
     // DEFINE CODE CONSTANTS, VARIABLES, AND BEGINNING VALUES
     // NOTE: Constants should generally be defined here (outside of METHOD bodies) 
