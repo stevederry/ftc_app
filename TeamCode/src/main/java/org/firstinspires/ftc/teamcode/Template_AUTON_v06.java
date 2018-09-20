@@ -112,8 +112,8 @@ public class Template_AUTON_v06 extends LinearOpMode {
                                                                         //    that it does not know how to handle
         // Display status and OpMode name on controller phone
         // FORMAT:  telemetry.desiredAction("arguments");
-        telemetry.addData("Status", "Initialized", "name");             // Specific info to send to controller phone
-        telemetry.update();                                             // Send info now
+        telemetry.addData("Status", "Initialized", "name");             // Specific info to be sent to controller phone
+        telemetry.update();                                             // Send info to controller phone
         //
         // INITIALIZE HARDWARE VARIABLES
         // NOTE:    - Values after 'get' MUST match EXACTLY the names used when the
