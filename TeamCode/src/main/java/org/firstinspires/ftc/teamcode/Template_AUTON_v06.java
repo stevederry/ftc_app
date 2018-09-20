@@ -1,6 +1,6 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE TO BECOME TEACHING TEMPLATE *****************************************
-// Edit Date:   September 19, 2018 @ 18:30
+// Edit Date:   September 20, 2018 @ 10:31
 // Clone Date:	September 18, 2018 @ 08:38
 // Team Name:   _____
 // Team Number: _____
@@ -20,16 +20,16 @@
 package org.firstinspires.ftc.teamcode;
 //
 // IMPORT PROGRAMMING ELEMENTS DESCRIBED ELSEWHERE FOR USE IN THIS CODE
-//      OpModes (specific)
+//      1. OpModes (specific)
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 //
-//      Hardware types (ONE import per TYPE of hardware, NOT for each INSTANCE of that type of hardware)
+//      2. Utilities (specific)
+import com.qualcomm.robotcore.util.ElapsedTime;
+//
+//      3. Hardware types (ONE import per TYPE of hardware, NOT for each INSTANCE of that type of hardware)
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-//
-//      Utilities (specific)
-import com.qualcomm.robotcore.util.ElapsedTime;
 // 
 // DEFINE OpMode
 // FORMAT:  @type(name="OpMode_Name",group="GroupName") 
@@ -41,12 +41,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class Template_AUTON_v06 extends LinearOpMode {
     //
     // DECLARE OpMode MEMBERS
-    // Utilities
-    // FORMAT:     access level, UtilityName = new UtilityName(); starting value
+    // 1. Utilities
+    //    FORMAT:   access level, UtilityName = new UtilityName(); starting value
     private ElapsedTime runtime = new ElapsedTime();        // Use private unless you need access from other classes.
     //
-    // Hardware
-    // FORMAT:     hardware type, specificNameOfHardware = starting_value;
+    // 2. Hardware
+    //    FORMAT:   hardware type, specificNameOfHardware = starting_value;
     DcMotor leftDriveMotor  = null;                         // One line for each hardware item
     DcMotor rightDriveMotor = null;                         // Name before '=' MUST match EXACTLY the names used when the
     DcMotor sweeperMotor    = null;                         //   robot configuration was built using the FTC Robot Controler app
@@ -55,17 +55,21 @@ public class Template_AUTON_v06 extends LinearOpMode {
     Servo   armServo        = null;
     //
     // DEFINE CODE CONSTANTS
-    // NOTE:    CONSTANTS should generally be defined here (outside of METHOD bodies) 
+    // NOTE:    CONSTANTS should generally be defined here (outside of METHOD bodies),
     //          instead of inside runOpMode() or any other METHOD,
-    //          especially if you ever want to access them from outside of this CLASS
+    //          especially if you ever want to access them from outside of this CLASS.
+    //
+    //          CONSTANTS can also be defined in separate JAVA file(s) as long as:
+    //          1.  Those files are part of the same project as the file (like this one) that needs to use the CONSTANTS
+    //          2.  The CONSTANTS are declared as public so that they can be accessed from outside the separate JAVA file(s)
     //
     //          METHODS are defined in one of two places:
-    //          1. In separate files that are part of your overall group of code
-    //             files, such as runOpMode(), as used above. The runOpMode METHOD
-    //             is in a file supplied by FTC. You can write your own separate files
-    //             that contain METHODS, as well (as this file does).
-    //          2. Inside this file, in the LOCALLY-DEFINED METHODS section, below.
-    //          3. For description of what a METHOD *is*, see NOTE in the LOCALLY-DEFINED METHODS section, below.
+    //          1.  In separate files that are part of your overall group of code
+    //              files, such as runOpMode(), as used above. The runOpMode METHOD
+    //              is in a file supplied by FTC. You can write your own separate files
+    //              that contain METHODS, as well (as this file does).
+    //          2.  Inside this file, in the LOCALLY-DEFINED METHODS section, below.
+    //          3.  For description of what a METHOD *is*, see NOTE in the LOCALLY-DEFINED METHODS section, below.
     //
     // FORMAT:  access level, static yes/no, final yes/no, value type, value name, assigned value
     //          - public means it can be accessed from other classes
