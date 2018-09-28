@@ -1,6 +1,6 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE TO BECOME TEACHING TEMPLATE *****************************************
-// Edit Date:   September 20, 2018 @ 10:31
+// Edit Date:   September 28, 2018 @ 09:07
 // Clone Date:	September 18, 2018 @ 08:38
 // Team Name:   _____
 // Team Number: _____
@@ -63,13 +63,14 @@ public class Template_AUTON_v06 extends LinearOpMode {
     //          1.  Those files are part of the same project as the file (like this one) that needs to use the CONSTANTS
     //          2.  The CONSTANTS are declared as public so that they can be accessed from outside the separate JAVA file(s)
     //
-    //          METHODS are defined in one of two places:
+    //          METHODS* are defined in one of two places:
     //          1.  In separate files that are part of your overall group of code
     //              files, such as runOpMode(), as used above. The runOpMode METHOD
     //              is in a file supplied by FTC. You can write your own separate files
     //              that contain METHODS, as well (as this file does).
     //          2.  Inside this file, in the LOCALLY-DEFINED METHODS section, below.
-    //          3.  For description of what a METHOD *is*, see NOTE in the LOCALLY-DEFINED METHODS section, below.
+    //          
+    //              * For description of what a METHOD *is*, see NOTE in the LOCALLY-DEFINED METHODS section, below.
     //
     // FORMAT:  access level, static yes/no, final yes/no, value type, value name, assigned value
     //          - public means it can be accessed from other classes
