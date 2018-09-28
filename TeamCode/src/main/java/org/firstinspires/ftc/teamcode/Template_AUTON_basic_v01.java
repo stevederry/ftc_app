@@ -1,7 +1,7 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE IS A TEACHING TEMPLATE **********************************************
-// Edit Date:   September 28, 2018 @ 09:12
-// Clone Date:	September 28, 2018 @ 09:10
+// Edit Date:   September 28, 2018 @ 12:49
+// Clone Date:  September 28, 2018 @ 09:10
 // Team Name:   _____
 // Team Number: _____
 // Code Type:   OpMode for AUTONOMOUS
@@ -16,29 +16,34 @@
 //*************************************************************************************************************************
 //*************************************************************************************************************************
 //
-// DEFINE CODE PACKAGE
+// DEFINE CODE PACKAGE      // All code used by your robot will reference this package. That code can be:
+                            //      A)  Supplied by FTC
+                            //      B)  Written by someone other than FTC (you, another team, etc.) and then
+                            //          placed inside this code package
 package org.firstinspires.ftc.teamcode;
 //
-// IMPORT PROGRAMMING ELEMENTS DESCRIBED ELSEWHERE FOR USE IN THIS CODE
-//      1. OpModes (specific)
+// IMPORT PROGRAMMING ELEMENTS DESCRIBED ELSEWHERE IN THE CODE PACKAGE FOR USE IN THIS CODE
+//      1. Classes (specific)
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 //
 //      2. Utilities (specific)
 import com.qualcomm.robotcore.util.ElapsedTime;
 //
-//      3. Hardware types (ONE import per TYPE of hardware, NOT for each INSTANCE of that type of hardware)
+//      3. Hardware (types: ONE import per TYPE of hardware, NOT for each INSTANCE of that type of hardware)
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 // 
 // DEFINE OpMode
+// NOTE:    OpMode is the name for a set of code that contains the instructions the robot will perform. It is a class
+//          inside the ftc_app code package supplied by FTC
 // FORMAT:  @type(name="OpMode_Name",group="GroupName") 
-@Autonomous(name="Template_AUTON_v06", group="Derry_FTC_Templates")
+@Autonomous(name="Template_AUTON_basic_v01", group="Derry_FTC_Templates")
 //
 // DEFINE class
 // NOTE:    All JAVA files must have at least one CLASS
 // FORMAT:  access level, class class_name, extends name of class this new class extends (if any) {
-public class Template_AUTON_v06 extends LinearOpMode {
+public class Template_AUTON_basic_v01 extends LinearOpMode {
     //
     // DECLARE OpMode MEMBERS
     // 1. Utilities
@@ -65,8 +70,8 @@ public class Template_AUTON_v06 extends LinearOpMode {
     //
     //          METHODS* are defined in one of two places:
     //          1.  In separate files that are part of your overall group of code
-    //              files, such as runOpMode(), as used above. The runOpMode METHOD
-    //              is in a file supplied by FTC. You can write your own separate files
+    //              files, such as runOpMode(), as used below. The runOpMode METHOD
+    //              is in a file supplied by FTC. You can write your own files
     //              that contain METHODS, as well (as this file does).
     //          2.  Inside this file, in the LOCALLY-DEFINED METHODS section, below.
     //          
@@ -108,7 +113,10 @@ public class Template_AUTON_v06 extends LinearOpMode {
     //
     // Call runOpMode() METHOD from the parent CLASS of LinearOpMode
     // FORMAT:  access level, return type or void, methodName(arguments), type of errors or exception {
-    public void runOpMode() throws InterruptedException  {              // "InterruptedException" keeps the program 
+    public void runOpMode() throws InterruptedException  {              // "void" means that this METHOD does not return
+                                                                        //      data to any code that calls this METHOD. It
+                                                                        //      does NOT mean "invalid."
+                                                                        // "InterruptedException" keeps the program 
                                                                         //    from freezing completely if there is an error
                                                                         //    that it does not know how to handle
         // Display status and OpMode name on controller phone
