@@ -89,14 +89,6 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     //          1.  Those files are part of the same project as the file (like this one) that needs to use the CONSTANTS
     //          2.  The CONSTANTS are declared as public so that they can be accessed from outside the separate JAVA file(s)
     //
-    //          METHODS* are defined in one of two places:
-    //          (* For description of what a METHOD *is*, see NOTE in the LOCALLY-DEFINED METHODS section, below.)
-    //          1.  In separate files that are part of your overall group of code
-    //              files, such as runOpMode(), as used below. The runOpMode METHOD
-    //              is in a file supplied by FTC. You can write your own files
-    //              that contain METHODS, as well (as this file does).
-    //          2.  Inside this file, in the LOCALLY-DEFINED METHODS section, below.
-    //
     // FORMAT:  access level, static yes/no, final yes/no, value type, value name, assigned value
     //          - public means it can be accessed from other classes
     //          - static means there is only one copy no matter how many instances of the CLASS you create
@@ -160,7 +152,7 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
         //   1.  Drive FORWARD, FAST, for 3 seconds
         leftDriveMotor.setPower(DRIVE_POWER_FAST);
         rightDriveMotor.setPower(DRIVE_POWER_FAST);
-        sleep(3000);                                            //  Sleep for 3000 miliseconds (3 seconds)
+        sleep(3000);                                            //  Drive for 3000 miliseconds (3 seconds)
                                                                 //  Sleep(X) pauses code execution so that motors
                                                                 //      can turn for the time entered as X                                                                
         //
@@ -173,7 +165,7 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
         rightDriveMotor.setPower(DRIVE_POWER_FAST);             //  When left motor spins backward, and
                                                                 //      right motor spins forward, then the
                                                                 //      robot will spin to its left
-        sleep(1000);                                            //  Run motors for 1 second
+        sleep(1000);                                            //  Spin for 1 second
         //
         //   4.  STOP
         leftDriveMotor.setPower(MOTOR_STOP); 
@@ -182,7 +174,7 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
         //   5.  Drive FORWARD, SLOWLY, for 2 seconds
         leftDriveMotor.setPower(DRIVE_POWER_SLOW);
         rightDriveMotor.setPower(DRIVE_POWER_SLOW);
-        sleep(2000);                                            //  Run motors for 2 seconds
+        sleep(2000);                                            //  Drive motors for 2 seconds
         //
         //   6.  STOP
         leftDriveMotor.setPower(MOTOR_STOP); 
@@ -196,7 +188,7 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
                                                                 //      robot will spin to its right
         //   8.  Extend arm OUTWARD, SLOWLY, for 1 second
         armMotor.setPower(ARM_MOTOR_MOVE); 
-        sleep(1000);                                            //  Run motor for 1 second
+        sleep(1000);                                            //  Extend arm for 1 second
         //
         //   9.  STOP arm
         armMotor.setPower(MOTOR_STOP); 
@@ -207,8 +199,9 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
         //  11.  Retract arm INWARD, SLOWLY, for 1 second
         armMotor.setPower(-ARM_MOTOR_MOVE);                     //  Negative value to make gear that moves arm, 
                                                                 //      and retracts arm
-        sleep(1000);                                            //  Run motor for 1 second
+        sleep(1000);                                            //  Retract arm for 1 second
         //  12.  STOP arm
+        armMotor.setPower(MOTOR_STOP); 
         //
         //  13.  Wait for Teleop
     }
@@ -222,99 +215,17 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     // BEGIN LOCALLY-DEFINED METHODS
     //****************************************************************************************************************
     // NOTE:    METHODS are sections of code that are written once but can be used ("called") by the program multiple times. 
-    //          - A METHOD can have all of its values set internally (see robotStop, below),
-    //            or use values passed to it each time the program calls the METHOD (see driveForward, below).
-    //          - VARIABLES allow the METHOD's code to be written once but adapt to different situations in the
-    //            section of code that is calling it.
+    //          -   A METHOD can have all of its values set internally (see robotStop, below),
+    //              or use values passed to it each time the program calls the METHOD (see driveForward, below).
+    //          -   VARIABLES allow the METHOD's code to be written once but adapt to different situations in the
+    //              section of code that is calling it.
     //
-    // ********                     
-    // METHOD:  stopRobot()
-    // PURPOSE: Stop all motors at current location by setting all power to zero
-    // FORMAT:  access level, return type or void, methodName(arguments){
-    public void stopRobot(){                                // The empty "()" section means that this method
-        leftDriveMotor.setPower(0);                         //      does not rely on values passed into it
-        rightDriveMotor.setPower(0);                        //      from the section of code that calls it, and
-        sweeperMotor.setPower(0);                           //      uses the values entered directly here (0 in this case)
-    }                                                       
-    // END of METHOD stopRobot
-    //
-    // ********
-    // METHOD:  adjustTimeBasedOnPower(Time,Power)
-    // PURPOSE: Adjust the Time value based on the requested Power value
-    // NOTE:    == means "____ is currently equal to ____"
-    //           = means "____ is now equal to ____"
-    // FORMAT:  access level, return type or void, methodName(arguments){
-    public double adjustTimeBasedOnPower(double Time, double Power){    // double
-                                                                        // NOTE:    Nested IF / ELSE IF statements could be used
-                                                                        //          For clarity, separate IF statements are used       
-        if (Power == DRIVE_POWER_MEDIUM){                               
-            Time = Time * DRIVE_TIME_ADJUSTER_FOR_POWER_MED;            // Increase Time to compensate for reduced power, or
-        }                                                               // Leave Power unchanged if Power is not DRIVE_POWER_MEDIUM
-                                                                        //
-        if (Power == DRIVE_POWER_SLOW){
-            Time = Time * DRIVE_TIME_ADJUSTER_FOR_POWER_SLOW;           // Increase Time to compensate for reduced power, or
-        }                                                               // Leave Power unchanged if Power is not DRIVE_POWER_SLOW
-        return Time;
-    }
-    // END of METHOD adjustTimeBasedOnPower
-    //
-    // ********
-    // METHOD:  driveForward(Time,Power)
-    // PURPOSE: Adjust the Time value based on the requested Power
-    // FORMAT:  access level, return type or void, methodName(arguments){
-    public void driveForward(double Time, double Power){                // The variable names Time and Power will be assigned
-                                                                        //      to the values passed into the method, in the order
-                                                                        //      they are received
-        public double adjustedTime;                                     // Declare new variable to hold result of
-                                                                        //      adjustTimeBasedOnPower METHOD
-        adjustedTime = adjustTimeBasedOnPower(Time,Power)               // Set value of adjustedTime to result returned
-                                                                        //      by adjustTimeBasedOnPower METHOD 
-                                                                        //
-        leftDriveMotor.setPower(Power);                                 // Run motor with passed Power value
-        rightDriveMotor.setPower(Power);                                // Run motor with passed Power value
-        sleep((long) adjustedTime);                                     // Wait here in code for duration of passed Time value
-                                                                        //      (allows motors to turn for duration of Time)
-    } 
-    // END of METHOD driveForward
-    // ********
-    //
-    // METHOD:  spinRight(Time,Power)
-    // PURPOSE: Adjust the Time value based on the requested Power
-    // FORMAT:  access level, return type or void, methodName(arguments){
-    public void spinRight(double Time, double Power){                   // The variable names Time and Power will be assigned
-                                                                        //      to the values passed into the method, in the order
-                                                                        //      they are received
-        public double adjustedTime;                                     // Declare new variable to hold result of
-                                                                        //      adjustTimeBasedOnPower METHOD
-        adjustedTime = adjustTimeBasedOnPower(Time,Power)               // Set value of adjustedTime to result returned
-                                                                        //      by adjustTimeBasedOnPower METHOD 
-                                                                        //
-        leftDriveMotor.setPower(Power);                                 // Run motor with passed Power value
-        rightDriveMotor.setPower(-Power);                               // Run motor with passed Power value inverted
-                                                                        //      so motor will rotate in reverse
-        sleep((long) Time);                                             // Wait here in code for duration of passed Time value
-                                                                        //      (allows motors to run for duration of Time)
-    }
-    // END of METHOD spinRight 
-    //
-    // METHOD:  spinLeft(Time,Power)
-    // PURPOSE: Adjust the Time value based on the requested Power
-    // FORMAT:  access level, return type or void, methodName(arguments){                     
-    public void spinLeft(long Time, double Power){                      // The variable names Time and Power will be assigned
-                                                                        //      to the values passed into the method, in the order
-                                                                        //      they are received
-        public double adjustedTime;                                     // Declare new variable to hold result of
-                                                                        //      adjustTimeBasedOnPower METHOD
-        adjustedTime = adjustTimeBasedOnPower(Time,Power)               // Set value of adjustedTime to result returned
-                                                                        //      by adjustTimeBasedOnPower METHOD 
-                                                                        //
-        leftDriveMotor.setPower(-Power);                                // Run motor with passed Power value inverted
-                                                                        //      so motor will rotate in reverse
-        rightDriveMotor.setPower(Power);                                // Run motor with passed Power value
-        sleep(Time);                                                    // Wait here in code for duration of passed Time value
-                                                                        //      (allows motors to run for duration of Time)
-    }
-    // END of METHOD spinLeft
+    //          METHODS are defined in one of two places:
+    //          1.  In separate files that are part of your overall group of code
+    //              files, such as runOpMode(), as used below. The runOpMode METHOD
+    //              is in a file supplied by FTC. You can write your own files
+    //              that contain METHODS, as well (as this file does).
+    //          2.  Inside this file, in the LOCALLY-DEFINED METHODS section, below.    //
     //
     //****************************************************************************************************************
     // END of LOCALLY-DEFINED METHODS
