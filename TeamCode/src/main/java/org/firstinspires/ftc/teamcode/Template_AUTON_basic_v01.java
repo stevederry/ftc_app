@@ -1,7 +1,7 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE IS A TEACHING TEMPLATE **********************************************
-// Edit Date:   September 28, 2018 @ 13:43
-// Clone Date:  September 28, 2018 @ 09:10
+// Edit Date:   September 28, 2018 @ 14:48
+// Clone Date:  September 28, 2018 @ 14:48
 // Team Name:   _____
 // Team Number: _____
 // Code Type:   OpMode for AUTONOMOUS
@@ -30,24 +30,24 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 //      2. Utilities (specific)
 import com.qualcomm.robotcore.util.ElapsedTime;
 //
-//      3. Hardware (types: ONE import per TYPE of hardware, NOT for each INSTANCE of that type of hardware)
+//      3. Hardware (types: ONE import per TYPE of hardware, NOT for each INSTANCE of that TYPE of hardware)
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 // 
 // DEFINE OpMode
 // NOTE:    OpMode is the name for a set of code that contains the instructions the robot will perform. It is a class
-//          inside the ftc_app code package supplied by FTC
-// FORMAT:  @type(name="OpMode_Name",group="GroupName") 
-@Autonomous(name="Template_AUTON_basic_v01", group="Derry_FTC_Templates")
+//          inside the ftc_app code package supplied by FTC.
+// FORMAT:  @type(name="OpMode_Name", group="GroupName") 
+@Autonomous(name="Template_AUTON_no_methods_v00", group="Derry_FTC_Templates")
 //
 // DEFINE class
 // NOTE:    All JAVA files must have at least one CLASS
-// FORMAT:  access level, class class_name, extends name of class this new class extends (if any) {
-public class Template_AUTON_basic_v01 extends LinearOpMode {
+// FORMAT:  access level, class class_name, extends NameOfClass this new class extends (if any) {
+public class Template_AUTON_no_methods_v00 extends LinearOpMode {
     //
     // DECLARE OpMode MEMBERS
     // 1. Utilities
-    //    FORMAT:   access level, UtilityName = new UtilityName(); starting value
+    //    FORMAT:   access level, UtilityName runtime = new UtilityName();
     private ElapsedTime runtime = new ElapsedTime();        // Use private unless you need access from other classes.
     //
     // 2. Hardware (DECLARE and INTIALIZE variables at the same time)
@@ -63,7 +63,7 @@ public class Template_AUTON_basic_v01 extends LinearOpMode {
     DcMotor rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
     DcMotor sweeperMotor    = hardwareMap.dcMotor.get("sweeperMotor");                        
     DcMotor armMotor        = hardwareMap.dcMotor.get("armMotor");                        
-    Servo   gripperServo    = null;                    
+    Servo   gripperServo    = hardwareMap.servo.get("gripperServo";                    
     //
     // SET DC MOTOR DIRECTIONS
     // NOTE:    "Reverse" any motor that runs backwards (relative to "forward" direction of robot)
@@ -150,8 +150,8 @@ public class Template_AUTON_basic_v01 extends LinearOpMode {
         //****************************************************************************************************************
         //
         // WAIT for driver to press PLAY
-        waitForStart();                     // The waitForStart() METHOD is part of the LinearOpMode CLASS,
-                                            //      which is defined elsewhere in the FTC resource code
+        waitForStart();                                          // The waitForStart() METHOD is part of the LinearOpMode CLASS,
+                                                                 //      which is defined elsewhere in the FTC resource code
         //
         //****************************************************************************************************************
         // AFTER driver presses PLAY, execute code below this line
@@ -160,7 +160,7 @@ public class Template_AUTON_basic_v01 extends LinearOpMode {
         // 1. Start at predetermined location (positioned by drivers prior to game start)
         //
         // 2. Drive forward to make contact with game object, then pause to let object flex/bounce/roll/slide
-        driveForward(DRIVE_TIME_TO_OBJECT,DRIVE_POWER_FAST);   // Arguments MUST be in order expected by method
+        driveForward(DRIVE_TIME_TO_OBJECT,DRIVE_POWER_FAST);    // Arguments MUST be in order expected by method
         stopRobot();                                            // Stop      
         sleep((long) 2);                                        // 2 seconds allows Object to bounce/flex before rogbot moves again
         //
