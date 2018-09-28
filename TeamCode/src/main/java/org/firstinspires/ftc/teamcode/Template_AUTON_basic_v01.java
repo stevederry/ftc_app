@@ -1,6 +1,6 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE IS A TEACHING TEMPLATE **********************************************
-// Edit Date:   September 28, 2018 @ 12:49
+// Edit Date:   September 28, 2018 @ 13:43
 // Clone Date:  September 28, 2018 @ 09:10
 // Team Name:   _____
 // Team Number: _____
@@ -50,14 +50,29 @@ public class Template_AUTON_basic_v01 extends LinearOpMode {
     //    FORMAT:   access level, UtilityName = new UtilityName(); starting value
     private ElapsedTime runtime = new ElapsedTime();        // Use private unless you need access from other classes.
     //
-    // 2. Hardware
-    //    FORMAT:   hardware type, specificNameOfHardware = starting_value;
-    DcMotor leftDriveMotor  = null;                         // One line for each hardware item
-    DcMotor rightDriveMotor = null;                         // Name before '=' MUST match EXACTLY the names used when the
-    DcMotor sweeperMotor    = null;                         //   robot configuration was built using the FTC Robot Controler app
-    Servo   gripperServo    = null;                         //   on the robot controller phone
-    Servo   sweeperServo    = null;
-    Servo   armServo        = null;
+    // 2. Hardware (DECLARE and INTIALIZE variables at the same time)
+    //    NOTE:     - This section tells the code that, later, these names will be used to refer to items on the robot.
+    //              - The robot's pieces are named in the HardwareMap using the software on the ROBOT CONTROLLER PHONE.
+    //              - Values after 'get' MUST match EXACTLY the names used when the robot configuration was 
+    //                built using the FTC Robot Controler app on the ROBOT CONTROLLER PHONE.
+    //              - In this code, each hardware variable name matches the name of the corresponding item in 
+    //                the hardware map. This is not required, but is recommended because it keeps communication
+    //                clear and usage consistent.
+    //    FORMAT:   HardwareType hardwareVariableName = hardwareMap.hardwareType.get("nameAsAssignedInHardwareMap");             
+    DcMotor leftDriveMotor  = hardwareMap.dcMotor.get("leftDriveMotor");
+    DcMotor rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
+    DcMotor sweeperMotor    = hardwareMap.dcMotor.get("sweeperMotor");                        
+    DcMotor armMotor        = hardwareMap.dcMotor.get("armMotor");                        
+    Servo   gripperServo    = null;                    
+    //
+    // SET DC MOTOR DIRECTIONS
+    // NOTE:    "Reverse" any motor that runs backwards (relative to "forward" direction of robot)
+    //          when powered by a positive power value
+    // FORMAT:  hardwareName.setDirection(DcMotor.Direction.DIRECTION)
+    leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);     
+    rightDriveMotor.setDirection(DcMotor.Direction.FORWARD);    
+    weeperMotor.setDirection(DcMotor.Direction.FORWARD);       // Assumes sweeperMotor is same orientation as rightDriveMotor
+    //
     //
     // DEFINE CODE CONSTANTS
     // NOTE:    CONSTANTS should generally be defined here (outside of METHOD bodies),
@@ -69,13 +84,12 @@ public class Template_AUTON_basic_v01 extends LinearOpMode {
     //          2.  The CONSTANTS are declared as public so that they can be accessed from outside the separate JAVA file(s)
     //
     //          METHODS* are defined in one of two places:
+    //          (* For description of what a METHOD *is*, see NOTE in the LOCALLY-DEFINED METHODS section, below.)
     //          1.  In separate files that are part of your overall group of code
     //              files, such as runOpMode(), as used below. The runOpMode METHOD
     //              is in a file supplied by FTC. You can write your own files
     //              that contain METHODS, as well (as this file does).
     //          2.  Inside this file, in the LOCALLY-DEFINED METHODS section, below.
-    //          
-    //              * For description of what a METHOD *is*, see NOTE in the LOCALLY-DEFINED METHODS section, below.
     //
     // FORMAT:  access level, static yes/no, final yes/no, value type, value name, assigned value
     //          - public means it can be accessed from other classes
@@ -114,7 +128,7 @@ public class Template_AUTON_basic_v01 extends LinearOpMode {
     // Call runOpMode() METHOD from the parent CLASS of LinearOpMode
     // FORMAT:  access level, return type or void, methodName(arguments), type of errors or exception {
     public void runOpMode() throws InterruptedException  {              // "void" means that this METHOD does not return
-                                                                        //      data to any code that calls this METHOD. It
+                                                                        //      data to any code that calls this it. It
                                                                         //      does NOT mean "invalid."
                                                                         // "InterruptedException" keeps the program 
                                                                         //    from freezing completely if there is an error
@@ -124,32 +138,12 @@ public class Template_AUTON_basic_v01 extends LinearOpMode {
         telemetry.addData("Status", "Initialized", "name");             // Specific info to be sent to controller phone
         telemetry.update();                                             // Send info to controller phone
         //
-        // INITIALIZE HARDWARE VARIABLES
-        // NOTE:    - Values after 'get' MUST match EXACTLY the names used when the
-        //            robot configuration was built using the FTC Robot Controler app on the robot controller phone.
-        //          - In this code, each hardware variable name matches the name of the corresponding item in 
-        //            the hardware map. This is not required, but is recommended because it keeps communication\
-        //            clear and usage consistent.
-        // FORMAT:  hardware variable name = location within hardware map (" value as defined in hardware map ");
-        leftDriveMotor  = hardwareMap.dcMotor.get("leftDriveMotor");
-        rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
-        sweeperMotor    = hardwareMap.dcMotor.get("sweeperMotor");
-        gripperServo    = hardwareMap.servo.get("gripperServo");
-        //
-        // SET DC MOTOR DIRECTIONS
-        // NOTE:    "Reverse" any motor that runs backwards (relative to "forward" direction of robot)
-        //          when powered by positive value
-        // FORMAT:  hardware_name.setDirection(DcMotor.Direction.DIRECTION)
-        leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);     
-        rightDriveMotor.setDirection(DcMotor.Direction.FORWARD);    
-        sweeperMotor.setDirection(DcMotor.Direction.FORWARD);       // Assumes sweeperMotor is same orientation as rightDriveMotor
-        //
         // SET ALL MOTORS TO DESIRED STARTING STATUS
         //      DC Motors
-        stopRobot();                                                // Use METHOD call to set all DC motors to STOP (power value = 0)
+        stopRobot();                                                    // Use METHOD call to set all DC motors to STOP
         //      Servo Motors
-        gripperServo.setPosition(GRIPPER_SERVO_START);              // Set SERVO motor to desired start position
-                                                                    //      using variable defined above
+        gripperServo.setPosition(GRIPPER_SERVO_START);                  // Set SERVO motor to desired start position
+                                                                        //      using variable defined above
         //
         //****************************************************************************************************************
         // END OF PREPARATIONS
