@@ -1,25 +1,26 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE IS A TEACHING TEMPLATE **********************************************
-// Edit Date:   September 28, 2018 @ 15:13
+// Edit Date:   September 28, 2018 @ 23:18
 // Clone Date:  September 28, 2018 @ 13:43
 // Team Name:   _____
 // Team Number: _____
 // Code Type:   OpMode for AUTONOMOUS
 // Description: Brief description of what this code does:
 //               0.  Start at predetermined location (positioned by drivers prior to game start)
+//                   with robot gripper holding a pre-loaded item
 //               1.  Drive FORWARD, FAST, for 3 seconds
-//               2.  STOP
+//               2.  STOP driving
 //               3.  Spin LEFT, FAST, for 1 second
-//               4.  STOP
+//               4.  STOP spinning
 //               5.  Drive FORWARD, FAST, for 2 seconds
-//               6.  STOP
+//               6.  STOP driving
 //               7.  Spin RIGHT, SLOWLY, for 2 seconds
-//               8.  STOP
+//               8.  STOP spinning
 //               9.  Extend arm OUTWARD, for 1 second
 //              10.  STOP arm
-//              11.  Set gripper to OPEN position
+//              11.  Set gripper to OPEN position to release item
 //              12.  Retract arm INWARD, for 1 second
-//              13.  STOP
+//              13.  STOP arm
 //              14.  Wait for Teleop
 //*************************************************************************************************************************
 //*************************************************************************************************************************
@@ -30,7 +31,7 @@
                             //          placed inside this code package
 package org.firstinspires.ftc.teamcode;
 //
-// IMPORT PROGRAMMING ELEMENTS DESCRIBED ELSEWHERE IN THE CODE PACKAGE FOR USE IN THIS CODE
+// IMPORT PROGRAMMING ELEMENTS DESCRIBED ELSEWHERE IN THE CODE PACKAGE FOR USE IN THIS FILE
 //      1. Classes (specific)
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -38,18 +39,21 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 //      2. Utilities (specific)
 import com.qualcomm.robotcore.util.ElapsedTime;
 //
-//      3. Hardware (types: ONE import per TYPE of hardware, NOT for each INSTANCE of that TYPE of hardware)
+//      3. Hardware Types (ONE import per TYPE of hardware, NOT for each INSTANCE of that TYPE of hardware)
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 // 
 // DEFINE OpMode
-// NOTE:    OpMode is the name for a set of code that contains the instructions the robot will perform. It is a class
-//          inside the ftc_app code package supplied by FTC.
+// NOTE:    OpMode is the name for a set of code that contains the instructions the robot will perform. 
+//          It is a class inside the ftc_app code package supplied by FTC.
 // FORMAT:  @type(name="OpMode_Name", group="GroupName") 
 @Autonomous(name="Template_AUTON_no_custom_methods_v00", group="Derry_FTC_Templates")
 //
 // DEFINE class
-// NOTE:    All JAVA files must have at least one CLASS
+// NOTE:    - All JAVA files must have at least one CLASS, but can have more.
+//          - This file will create one CLASS, and that CLASS will be an OpMode that
+//            extends the pre-defined CLASS named LinearOpMode, which is suplied by FTC as part of the CODE PACKAGE.
+//          - Not all classes are OpModes.
 // FORMAT:  access level, class class_name, extends NameOfClass this new class extends (if any) {
 public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     //
@@ -64,7 +68,7 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     //              - Values after 'get' MUST match EXACTLY the names used when the robot configuration was 
     //                built using the FTC Robot Controler app on the ROBOT CONTROLLER PHONE.
     //              - In this code, each hardware variable name matches the name of the corresponding item in 
-    //                the hardware map. This is not required, but is recommended because it keeps communication
+    //                the HardwareMap. This is not required, but is recommended because it keeps communication
     //                clear and usage consistent.
     //    FORMAT:   HardwareType hardwareVariableName = hardwareMap.hardwareType.get("nameAsAssignedInHardwareMap");             
     DcMotor leftDriveMotor  = hardwareMap.dcMotor.get("leftDriveMotor");
@@ -73,7 +77,7 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     Servo   gripperServo    = hardwareMap.servo.get("gripperServo";                    
     //
     // SET DC MOTOR DIRECTIONS
-    // NOTE:    "Reverse" any motor that runs backwards (relative to desired "forward" motion of element pwoered
+    // NOTE:    "Reverse" any motor that runs backwards (relative to desired "forward" motion of element powered
     //          by that motor, such as a drive wheel or extension arm) when powered by a positive power value
     // FORMAT:  hardwareName.setDirection(DcMotor.Direction.DIRECTION)
     leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);     
@@ -81,15 +85,17 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     armMotor.setDirection(DcMotor.Direction.FORWARD);
     //
     // DEFINE CODE CONSTANTS
-    // NOTE:    CONSTANTS should generally be defined here (outside of METHOD bodies),
+    // NOTE:    CONSTANTS should generally be defined outside of METHOD bodies,
     //          instead of inside runOpMode() or any other METHOD,
     //          especially if you ever want to access them from outside of this CLASS.
     //
     //          CONSTANTS can also be defined in separate JAVA file(s) as long as:
-    //          1.  Those files are part of the same project as the file (like this one) that needs to use the CONSTANTS
-    //          2.  The CONSTANTS are declared as public so that they can be accessed from outside the separate JAVA file(s)
+    //          1.  Those files are part of the same project as the file (like this one) that
+    //              needs to use the CONSTANTS
+    //          2.  The CONSTANTS are declared as public so that they can be accessed from 
+    //              outside the JAVA file(s) in which they are located
     //
-    // FORMAT:  access level, static yes/no, final yes/no, value type, value name, assigned value
+    // FORMAT:  access_level static final value_type VALUE_NAME = assigned_value;
     //          - public means it can be accessed from other classes
     //          - static means there is only one copy no matter how many instances of the CLASS you create
     //          - final means its value never changes (constant)
@@ -99,7 +105,7 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     public static final double MOTOR_STOP               = 0;
     public static final double DRIVE_POWER_FAST         = 0.8;
     public static final double DRIVE_POWER_SLOW         = DRIVE_POWER_FAST / 2);
-    public static final double ARM_MOTOR_MOVE           = .2;
+    public static final double ARM_MOTOR_MOVE           = .25;
     //
     // Position address values for servos
     public static final double GRIPPER_SERVO_OPEN       = 0;            // Open to receive game elements
@@ -107,13 +113,13 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     //
     @Override
     // Override is a note to the compiler stating that you expect that you are replacing a METHOD
-    //      with the same name in the parent (extends ______ class) with this METHOD. That way if you typo/change
-    //      the METHOD signature you will get an error, stopping you from having two METHODS when you expect only one.
+    //      with the same name in the parent (extends ______ class) with this METHOD. This way, if you typo/change
+    //      the METHOD name you will get an error, stopping you from having two METHODS when you expect only one.
     //
     // Call runOpMode() METHOD from the parent CLASS of LinearOpMode
-    // FORMAT:  access level, return type or void, methodName(arguments), type of errors or exception {
+    // FORMAT:  access_level, return_type or void, methodName(arguments), type of errors or exception {
     public void runOpMode() throws InterruptedException  {              // "void" means that this METHOD does not return
-                                                                        //      data to any code that calls this it. It
+                                                                        //      data to any code that calls it. It
                                                                         //      does NOT mean "invalid."
                                                                         // "InterruptedException" keeps the program 
                                                                         //    from freezing completely if there is an error
@@ -145,10 +151,11 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
                                                                         //    the FTC resource code
         //
         //****************************************************************************************************************
-        // AFTER driver presses PLAY, execute code below this line
+        // AFTER driver presses PLAY, the ROBOT CONTROLLER PHONE will execute the code below this line
         //****************************************************************************************************************
         //
         //   0.  Start at predetermined location (positioned by drivers prior to game start)
+        //       with robot gripper holding a pre-loaded item
         //   1.  Drive FORWARD, FAST, for 3 seconds
         leftDriveMotor.setPower(DRIVE_POWER_FAST);
         rightDriveMotor.setPower(DRIVE_POWER_FAST);
@@ -156,49 +163,54 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
                                                                 //  Sleep(X) pauses code execution so that motors
                                                                 //      can turn for the time entered as X                                                                
         //
-        //   2.  STOP
+        //   2.  STOP driving
         leftDriveMotor.setPower(MOTOR_STOP);                    //  You could enter 0 here instead of the variable MOTOR_STOP,
         rightDriveMotor.setPower(MOTOR_STOP);                   //      but this keeps the code readable    
         //
-        //   3.  Spin LEFT, SLOWLY, for 2 seconds
+        //   3.  Spin LEFT, FAST, for 1 second
         leftDriveMotor.setPower(-DRIVE_POWER_FAST);             //  Negative value to make motor spin wheel backward
         rightDriveMotor.setPower(DRIVE_POWER_FAST);             //  When left motor spins backward, and
                                                                 //      right motor spins forward, then the
                                                                 //      robot will spin to its left
         sleep(1000);                                            //  Spin for 1 second
         //
-        //   4.  STOP
+        //   4.  STOP spinning
         leftDriveMotor.setPower(MOTOR_STOP); 
         rightDriveMotor.setPower(MOTOR_STOP);
         //
-        //   5.  Drive FORWARD, SLOWLY, for 2 seconds
-        leftDriveMotor.setPower(DRIVE_POWER_SLOW);
-        rightDriveMotor.setPower(DRIVE_POWER_SLOW);
+        //   5.  Drive FORWARD, FAST, for 2 seconds
+        leftDriveMotor.setPower(DRIVE_POWER_FAST);
+        rightDriveMotor.setPower(DRIVE_POWER_FAST);
         sleep(2000);                                            //  Drive motors for 2 seconds
         //
-        //   6.  STOP
+        //   6.  STOP driving
         leftDriveMotor.setPower(MOTOR_STOP); 
         rightDriveMotor.setPower(MOTOR_STOP);
         //
         //   7.  Spin RIGHT, SLOWLY, for 2 seconds
-        leftDriveMotor.setPower(DRIVE_POWER_FAST);  
-        rightDriveMotor.setPower(-DRIVE_POWER_FAST);            //  Negative value to make motor spin wheel backward
+        leftDriveMotor.setPower(DRIVE_POWER_SLOW);  
+        rightDriveMotor.setPower(-DRIVE_POWER_SLOW);            //  Negative value to make motor spin wheel backward
                                                                 //  When right motor spins backward, and
                                                                 //      left motor spins forward, then the
                                                                 //      robot will spin to its right
-        //   8.  Extend arm OUTWARD, SLOWLY, for 1 second
-        armMotor.setPower(ARM_MOTOR_MOVE); 
+        sleep(2000);                                            //  Drive motors for 2 seconds
+        //
+        //   8.  STOP spinning
+        leftDriveMotor.setPower(MOTOR_STOP); 
+        rightDriveMotor.setPower(MOTOR_STOP);
+        //
+        //   9.  Extend arm OUTWARD for 1 second
+        armMotor.setPower(ARM_MOTOR_MOVE);                      //  Positive value = extend arm
         sleep(1000);                                            //  Extend arm for 1 second
         //
-        //   9.  STOP arm
+        //  10.  STOP arm
         armMotor.setPower(MOTOR_STOP); 
         //
-        //  10.  Set gripper to OPEN position
-        gripperServo.setPosition(GRIPPER_SERVO_OPEN);
+        //  11.  Set gripper to OPEN position to release item
+        gripperServo.setPosition(GRIPPER_SERVO_OPEN);           
         //
-        //  11.  Retract arm INWARD, SLOWLY, for 1 second
-        armMotor.setPower(-ARM_MOTOR_MOVE);                     //  Negative value to make gear that moves arm, 
-                                                                //      and retracts arm
+        //  12.  Retract arm INWARD, for 1 second
+        armMotor.setPower(-ARM_MOTOR_MOVE);                     //  Negative value = retract arm
         sleep(1000);                                            //  Retract arm for 1 second
         //  12.  STOP arm
         armMotor.setPower(MOTOR_STOP); 
@@ -210,28 +222,8 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     //****************************************************************************************************************
     // END of AUTONOMOUS code 
     //****************************************************************************************************************
-    //
-    //****************************************************************************************************************
-    // BEGIN LOCALLY-DEFINED METHODS
-    //****************************************************************************************************************
-    // NOTE:    METHODS are sections of code that are written once but can be used ("called") by the program multiple times. 
-    //          -   A METHOD can have all of its values set internally (see robotStop, below),
-    //              or use values passed to it each time the program calls the METHOD (see driveForward, below).
-    //          -   VARIABLES allow the METHOD's code to be written once but adapt to different situations in the
-    //              section of code that is calling it.
-    //
-    //          METHODS are defined in one of two places:
-    //          1.  In separate files that are part of your overall group of code
-    //              files, such as runOpMode(), as used below. The runOpMode METHOD
-    //              is in a file supplied by FTC. You can write your own files
-    //              that contain METHODS, as well (as this file does).
-    //          2.  Inside this file, in the LOCALLY-DEFINED METHODS section, below.    //
-    //
-    //****************************************************************************************************************
-    // END of LOCALLY-DEFINED METHODS
-    //****************************************************************************************************************
 }
-// END of CLASS Template_AUTON_v05a
+// END of CLASS Template_AUTON_no_custom_methods_v00
 //
 //*************************************************************************************************************************
 // END OF FILE
