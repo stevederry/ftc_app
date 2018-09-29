@@ -9,16 +9,16 @@
 //               0.  Start at predetermined location (positioned by drivers prior to game start)
 //               1.  Drive FORWARD, FAST, for 3 seconds
 //               2.  STOP
-//               3.  Spin LEFT, SLOWLY, for 1 second
+//               3.  Spin LEFT, FAST, for 1 second
 //               4.  STOP
-//               5.  Drive FORWARD, SLOWLY, for 2 seconds
+//               5.  Drive FORWARD, FAST, for 2 seconds
 //               6.  STOP
 //               7.  Spin RIGHT, SLOWLY, for 2 seconds
 //               8.  STOP
-//               9.  Extend arm OUTWARD, SLOWLY, for 1 second
+//               9.  Extend arm OUTWARD, for 1 second
 //              10.  STOP arm
 //              11.  Set gripper to OPEN position
-//              12.  Retract arm INWARD, SLOWLY, for 1 second
+//              12.  Retract arm INWARD, for 1 second
 //              13.  STOP
 //              14.  Wait for Teleop
 //*************************************************************************************************************************
