@@ -1,7 +1,6 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE IS A TEACHING TEMPLATE **********************************************
-// Edit Date:   September 28, 2018 @ 23:18
-// Clone Date:  September 28, 2018 @ 13:43
+// Edit Date:   September 29, 2018 @ 14:26
 // Team Name:   _____
 // Team Number: _____
 // Code Type:   OpMode for AUTONOMOUS
@@ -74,7 +73,7 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     DcMotor leftDriveMotor  = hardwareMap.dcMotor.get("leftDriveMotor");
     DcMotor rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
     DcMotor armMotor        = hardwareMap.dcMotor.get("armMotor");                        
-    Servo   gripperServo    = hardwareMap.servo.get("gripperServo";                    
+    Servo   gripperServo    = hardwareMap.servo.get("gripperServo");                    
     //
     // SET DC MOTOR DIRECTIONS
     // NOTE:    "Reverse" any motor that runs backwards (relative to desired "forward" motion of element powered
@@ -131,13 +130,12 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
         //
         // SET ALL MOTORS TO DESIRED STARTING STATUS
         //      DC Motors
-        leftDriveMotor.setPower(0);
+        leftDriveMotor.setPower(0);                                     // All DC motors STOPPED
         rightDriveMotor.setPower(0);                            
         armMotor.setPower(0);      
         //
         //      Servo Motors
-        gripperServo.setPosition(GRIPPER_SERVO_CLOSED);                 // Set SERVO motor to desired start position
-                                                                        //      (gripping item) using a
+        gripperServo.setPosition(GRIPPER_SERVO_CLOSED);                 // gripperServo motor gripping item, using a
                                                                         //      variable defined above
         //
         //****************************************************************************************************************
