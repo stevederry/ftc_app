@@ -1,6 +1,6 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE IS A TEACHING TEMPLATE **********************************************
-// Edit Date:   September 29, 2018 @ 14:26
+// Edit Date:   September 30, 2018 @ 18:09
 // Team Name:   _____
 // Team Number: _____
 // Code Type:   OpMode for AUTONOMOUS
@@ -65,7 +65,7 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     //    NOTE:     - This section tells the code that, later, these names will be used to refer to items on the robot.
     //              - The robot's pieces are named in the HardwareMap using the software on the ROBOT CONTROLLER PHONE.
     //              - Values after 'get' MUST match EXACTLY the names used when the robot configuration was 
-    //                built using the FTC Robot Controler app on the ROBOT CONTROLLER PHONE.
+    //                built using the FTC Robot Controller app on the ROBOT CONTROLLER PHONE.
     //              - In this code, each hardware variable name matches the name of the corresponding item in 
     //                the HardwareMap. This is not required, but is recommended because it keeps communication
     //                clear and usage consistent.
