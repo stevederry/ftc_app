@@ -1,12 +1,12 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE IS A TEACHING TEMPLATE **********************************************
-// Edit Date:   September 30, 2018 @ 18:18
+// Edit Date:   October 02, 2018 @ 12:40
 // Team Name:   _____
 // Team Number: _____
 // Code Type:   OpMode for AUTONOMOUS
 // Description: Brief description of what this code does:
 // NOTE:        This code is based on Template_AUTON_no_custom_methods_v00,
-//              but removes the servo. and the arm.
+//              but removes the servo and the arm.
 //               0.  Start at predetermined location (positioned by drivers prior to game start)
 //                   with robot gripper holding a pre-loaded item
 //               1.  Drive FORWARD, FAST, for 3 seconds
