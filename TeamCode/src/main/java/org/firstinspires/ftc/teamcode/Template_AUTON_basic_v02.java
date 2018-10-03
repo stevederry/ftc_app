@@ -6,13 +6,17 @@
 // Team Number: _____
 // Code Type:   OpMode for AUTONOMOUS
 // Description: Brief description of what this code does:
-//              1. Start at predetermined location (positioned by drivers prior to game start)
-//              2. Drive forward to make contact with game object, then pause to let object flex/bounce/roll/slide
-//              3. Spin left to push object off its original position, then pause to let object flex/bounce/roll/slide
-//              4. Spin right to return to original orientation and prepare to park on object's original location
-//              5. Drive forward onto object's original location, then stop
-//              6. Set gripper to open position
-//              7. Wait for Teleop
+//               0.  Start at predetermined location (positioned by drivers prior to game start)
+//                   with robot gripper holding a pre-loaded item
+//               1.  Drive FORWARD, FAST, for 3 seconds
+//               2.  STOP driving
+//               3.  Spin LEFT, FAST, for 1 second
+//               4.  STOP spinning
+//               5.  Drive FORWARD, FAST, for 2 seconds
+//               6.  STOP driving
+//               7.  Spin RIGHT, SLOWLY, for 2 seconds
+//               8.  STOP spinning
+//               9.  Wait for Teleop
 //*************************************************************************************************************************
 //*************************************************************************************************************************
 //
@@ -71,7 +75,7 @@ public class Template_AUTON_basic_v02 extends LinearOpMode {
     // FORMAT:  hardwareName.setDirection(DcMotor.Direction.DIRECTION)
     leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);     
     rightDriveMotor.setDirection(DcMotor.Direction.FORWARD);    
-    weeperMotor.setDirection(DcMotor.Direction.FORWARD);       // Assumes sweeperMotor is same orientation as rightDriveMotor
+    sweeperMotor.setDirection(DcMotor.Direction.FORWARD);       // Assumes sweeperMotor is same orientation as rightDriveMotor
     //
     //
     // DEFINE CODE CONSTANTS
