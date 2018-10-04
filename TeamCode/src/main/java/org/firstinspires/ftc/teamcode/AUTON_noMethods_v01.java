@@ -73,13 +73,7 @@ public class AUTON_noMethods_v01 extends LinearOpMode {
     DcMotor leftDriveMotor  = hardwareMap.dcMotor.get("leftDriveMotor");
     DcMotor rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
     //
-    // SET DC MOTOR DIRECTIONS
-    // NOTE:    "Reverse" any motor that runs backwards (relative to desired "forward" motion of element powered
-    //          by that motor, such as a drive wheel or extension arm) when powered by a positive power value
-    // FORMAT:  hardwareName.setDirection(DcMotor.Direction.DIRECTION)
-    leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);     
-    rightDriveMotor.setDirection(DcMotor.Direction.FORWARD);    
-    //
+
     // DEFINE CODE CONSTANTS
     // NOTE:    CONSTANTS should generally be defined outside of METHOD bodies,
     //          instead of inside runOpMode() or any other METHOD,
@@ -115,6 +109,13 @@ public class AUTON_noMethods_v01 extends LinearOpMode {
                                                                         // "InterruptedException" keeps the program 
                                                                         //    from freezing completely if there is an error
                                                                         //    that it does not know how to handle
+        // SET DC MOTOR DIRECTIONS
+        // NOTE:    "Reverse" any motor that runs backwards (relative to desired "forward" motion of element powered
+        //          by that motor, such as a drive wheel or extension arm) when powered by a positive power value
+        // FORMAT:  hardwareName.setDirection(DcMotor.Direction.DIRECTION)
+        leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightDriveMotor.setDirection(DcMotor.Direction.FORWARD);
+        //
         // Display status and OpMode name on controller phone
         // FORMAT:  telemetry.desiredAction("arguments");
         telemetry.addData("Status", "Initialized", "name");             // Specific info to be sent to controller phone

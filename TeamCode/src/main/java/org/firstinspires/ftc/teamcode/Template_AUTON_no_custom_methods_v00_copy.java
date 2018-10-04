@@ -49,7 +49,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 // NOTE:    OpMode is the name for a set of code that contains the instructions the robot will perform. 
 //          It is a class inside the ftc_app code package supplied by FTC.
 // FORMAT:  @type(name="OpMode_Name", group="GroupName") 
-@Autonomous(name="Template_AUTON_no_custom_methods_v00", group="Derry_FTC_Templates")
+@Autonomous(name="Template_AUTON_no_custom_methods_v00_copy", group="Derry_FTC_Templates")
 //
 // DEFINE class
 // NOTE:    - All JAVA files must have at least one CLASS, but can have more.

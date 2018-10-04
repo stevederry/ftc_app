@@ -67,17 +67,9 @@ public class Template_AUTON_basic_v02 extends LinearOpMode {
     DcMotor rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
     DcMotor sweeperMotor    = hardwareMap.dcMotor.get("sweeperMotor");                        
     DcMotor armMotor        = hardwareMap.dcMotor.get("armMotor");                        
-    Servo   gripperServo    = hardwareMap.servo.get("gripperServo";                    
+    Servo   gripperServo    = hardwareMap.servo.get("gripperServo");
     //
-    // SET DC MOTOR DIRECTIONS
-    // NOTE:    "Reverse" any motor that runs backwards (relative to "forward" direction of robot)
-    //          when powered by a positive power value
-    // FORMAT:  hardwareName.setDirection(DcMotor.Direction.DIRECTION)
-    leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);     
-    rightDriveMotor.setDirection(DcMotor.Direction.FORWARD);    
-    sweeperMotor.setDirection(DcMotor.Direction.FORWARD);       // Assumes sweeperMotor is same orientation as rightDriveMotor
-    //
-    //
+     //
     // DEFINE CODE CONSTANTS
     // NOTE:    CONSTANTS should generally be defined here (outside of METHOD bodies),
     //          instead of inside runOpMode() or any other METHOD,
@@ -137,6 +129,14 @@ public class Template_AUTON_basic_v02 extends LinearOpMode {
                                                                         // "InterruptedException" keeps the program 
                                                                         //    from freezing completely if there is an error
                                                                         //    that it does not know how to handle
+        // SET DC MOTOR DIRECTIONS
+        // NOTE:    "Reverse" any motor that runs backwards (relative to "forward" direction of robot)
+        //          when powered by a positive power value
+        // FORMAT:  hardwareName.setDirection(DcMotor.Direction.DIRECTION)
+        leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightDriveMotor.setDirection(DcMotor.Direction.FORWARD);
+        sweeperMotor.setDirection(DcMotor.Direction.FORWARD);       // Assumes sweeperMotor is same orientation as rightDriveMotor
+        //
         // Display status and OpMode name on controller phone
         // FORMAT:  telemetry.desiredAction("arguments");
         telemetry.addData("Status", "Initialized", "name");             // Specific info to be sent to controller phone
@@ -241,10 +241,10 @@ public class Template_AUTON_basic_v02 extends LinearOpMode {
     public void driveForward(double Time, double Power){                // The variable names Time and Power will be assigned
                                                                         //      to the values passed into the method, in the order
                                                                         //      they are received
-        public double adjustedTime;                                     // Declare new variable to hold result of
+        final double adjustedTime = adjustTimeBasedOnPower(Time,Power); // Declare new variable to hold result of calling the
                                                                         //      adjustTimeBasedOnPower METHOD
-        adjustedTime = adjustTimeBasedOnPower(Time,Power)               // Set value of adjustedTime to result returned
-                                                                        //      by adjustTimeBasedOnPower METHOD 
+                                                                        //      and immediately define it as the result
+                                                                        //      of that METHOD call
                                                                         //
         leftDriveMotor.setPower(Power);                                 // Run motor with passed Power value
         rightDriveMotor.setPower(Power);                                // Run motor with passed Power value
@@ -260,10 +260,10 @@ public class Template_AUTON_basic_v02 extends LinearOpMode {
     public void spinRight(double Time, double Power){                   // The variable names Time and Power will be assigned
                                                                         //      to the values passed into the method, in the order
                                                                         //      they are received
-        public double adjustedTime;                                     // Declare new variable to hold result of
+        final double adjustedTime = adjustTimeBasedOnPower(Time,Power); // Declare new variable to hold result of calling the
                                                                         //      adjustTimeBasedOnPower METHOD
-        adjustedTime = adjustTimeBasedOnPower(Time,Power)               // Set value of adjustedTime to result returned
-                                                                        //      by adjustTimeBasedOnPower METHOD 
+                                                                        //      and immediately define it as the result
+                                                                        //      of that METHOD call
                                                                         //
         leftDriveMotor.setPower(Power);                                 // Run motor with passed Power value
         rightDriveMotor.setPower(-Power);                               // Run motor with passed Power value inverted
@@ -279,11 +279,12 @@ public class Template_AUTON_basic_v02 extends LinearOpMode {
     public void spinLeft(long Time, double Power){                      // The variable names Time and Power will be assigned
                                                                         //      to the values passed into the method, in the order
                                                                         //      they are received
-        public double adjustedTime;                                     // Declare new variable to hold result of
+        final double adjustedTime = adjustTimeBasedOnPower(Time,Power); // Declare new variable to hold result of calling the
                                                                         //      adjustTimeBasedOnPower METHOD
-        adjustedTime = adjustTimeBasedOnPower(Time,Power)               // Set value of adjustedTime to result returned
-                                                                        //      by adjustTimeBasedOnPower METHOD 
+                                                                        //      and immediately define it as the result
+                                                                        //      of that METHOD call
                                                                         //
+
         leftDriveMotor.setPower(-Power);                                // Run motor with passed Power value inverted
                                                                         //      so motor will rotate in reverse
         rightDriveMotor.setPower(Power);                                // Run motor with passed Power value

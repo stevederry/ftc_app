@@ -40,13 +40,13 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 //
 //      3. Hardware Types (ONE import per TYPE of hardware, NOT for each INSTANCE of that TYPE of hardware)
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
+//import com.qualcomm.robotcore.hardware.Servo;
 // 
 // DEFINE OpMode
 // NOTE:    OpMode is the name for a set of code that contains the instructions the robot will perform. 
 //          It is a class inside the ftc_app code package supplied by FTC.
 // FORMAT:  @type(name="OpMode_Name", group="GroupName") 
-@Autonomous(name="Template_AUTON_no_custom_methods_v00", group="Derry_FTC_Templates")
+@Autonomous(name="01_Template_AUTON_no_custom_methods_v00", group="Derry_FTC_Templates")
 //
 // DEFINE class
 // NOTE:    - All JAVA files must have at least one CLASS, but can have more.
@@ -75,7 +75,7 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     DcMotor leftDriveMotor  = hardwareMap.dcMotor.get("leftDriveMotor");
     DcMotor rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
     DcMotor armMotor        = hardwareMap.dcMotor.get("armMotor");                        
-    Servo   gripperServo    = hardwareMap.servo.get("gripperServo");                    
+    //Servo   gripperServo    = hardwareMap.servo.get("gripperServo");
     //
     // DEFINE CODE CONSTANTS
     // NOTE:    CONSTANTS should generally be defined outside of METHOD bodies,
@@ -138,7 +138,7 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
         armMotor.setPower(0);      
         //
         //      Servo Motors
-        gripperServo.setPosition(GRIPPER_SERVO_CLOSED);                 // gripperServo motor gripping item, using a
+        //gripperServo.setPosition(GRIPPER_SERVO_CLOSED);                 // gripperServo motor gripping item, using a
                                                                         //      variable defined above
         //
         //****************************************************************************************************************
@@ -208,7 +208,7 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
         armMotor.setPower(MOTOR_STOP); 
         //
         //  11.  Set gripper to OPEN position to release item
-        gripperServo.setPosition(GRIPPER_SERVO_OPEN);           
+        //gripperServo.setPosition(GRIPPER_SERVO_OPEN);
         //
         //  12.  Retract arm INWARD, for 1 second
         armMotor.setPower(-ARM_MOTOR_MOVE);                     //  Negative value = retract arm
