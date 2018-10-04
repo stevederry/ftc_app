@@ -1,6 +1,6 @@
 //*******************************************************************************************************************
 //************************************** THIS FILE TO BECOME TEACHING TEMPLATE **************************************
-// Edit Date:   2018_09_18 @ 20:12
+// Edit Date:   October 03, 2018 @ 19:37
 // Team Name:   __________
 // Team Number: __________
 // Code Type:   OpMode for AUTONOMOUS
@@ -213,7 +213,7 @@ public class Template_AUTON_v00 extends LinearOpMode {
         sleep(Time);                                        // Wait here in code for duration of passed Time value,
                                                             //   (allows motors to run for duration of Time)
     }
-}   // END of public class TemplateAutonGenericV05
+}   // END of public class Template_AUTON_v00
 //
 ///////////////////////////////////////////////////////////////
 // END OF FILE

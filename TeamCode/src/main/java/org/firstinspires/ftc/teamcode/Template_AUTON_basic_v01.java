@@ -1,6 +1,6 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE IS A TEACHING TEMPLATE **********************************************
-// Edit Date:   September 28, 2018 @ 14:48
+// Edit Date:   October 03, 2018 @ 19:37
 // Clone Date:  September 28, 2018 @ 14:48
 // Team Name:   _____
 // Team Number: _____
@@ -38,19 +38,21 @@ import com.qualcomm.robotcore.hardware.Servo;
 // NOTE:    OpMode is the name for a set of code that contains the instructions the robot will perform. It is a class
 //          inside the ftc_app code package supplied by FTC.
 // FORMAT:  @type(name="OpMode_Name", group="GroupName") 
-@Autonomous(name="Template_AUTON_no_methods_v00", group="Derry_FTC_Templates")
+@Autonomous(name="Template_AUTON_basic_v01", group="Derry_FTC_Templates")
 //
 // DEFINE class
-// NOTE:    All JAVA files must have at least one CLASS
+// NOTE:    1.  All JAVA files must have at least one CLASS
+//          2.  The CLASS that extends the LinearOpMode MUST be named to match
+//              the FILENAME (EXcluding the ".java" extension)
 // FORMAT:  access level, class class_name, extends NameOfClass this new class extends (if any) {
-public class Template_AUTON_no_methods_v00 extends LinearOpMode {
+public class Template_AUTON_basic_v01 extends LinearOpMode {
     //
     // DECLARE OpMode MEMBERS
     // 1. Utilities
     //    FORMAT:   access level, UtilityName runtime = new UtilityName();
     private ElapsedTime runtime = new ElapsedTime();        // Use private unless you need access from other classes.
     //
-    // 2. Hardware (DECLARE and INTIALIZE variables at the same time)
+    // 2. Hardware (DECLARE and INITIALIZE variables at the same time)
     //    NOTE:     - This section tells the code that, later, these names will be used to refer to items on the robot.
     //              - The robot's pieces are named in the HardwareMap using the software on the ROBOT CONTROLLER PHONE.
     //              - Values after 'get' MUST match EXACTLY the names used when the robot configuration was 
@@ -63,15 +65,7 @@ public class Template_AUTON_no_methods_v00 extends LinearOpMode {
     DcMotor rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
     DcMotor sweeperMotor    = hardwareMap.dcMotor.get("sweeperMotor");                        
     DcMotor armMotor        = hardwareMap.dcMotor.get("armMotor");                        
-    Servo   gripperServo    = hardwareMap.servo.get("gripperServo";                    
-    //
-    // SET DC MOTOR DIRECTIONS
-    // NOTE:    "Reverse" any motor that runs backwards (relative to "forward" direction of robot)
-    //          when powered by a positive power value
-    // FORMAT:  hardwareName.setDirection(DcMotor.Direction.DIRECTION)
-    leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);     
-    rightDriveMotor.setDirection(DcMotor.Direction.FORWARD);    
-    weeperMotor.setDirection(DcMotor.Direction.FORWARD);       // Assumes sweeperMotor is same orientation as rightDriveMotor
+    Servo   gripperServo    = hardwareMap.servo.get("gripperServo");
     //
     //
     // DEFINE CODE CONSTANTS
@@ -133,6 +127,13 @@ public class Template_AUTON_no_methods_v00 extends LinearOpMode {
                                                                         // "InterruptedException" keeps the program 
                                                                         //    from freezing completely if there is an error
                                                                         //    that it does not know how to handle
+        // SET DC MOTOR DIRECTIONS
+        // NOTE:    "Reverse" any motor that runs backwards (relative to "forward" direction of robot)
+        //          when powered by a positive power value
+        // FORMAT:  hardwareName.setDirection(DcMotor.Direction.DIRECTION);
+        leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightDriveMotor.setDirection(DcMotor.Direction.FORWARD);
+        //
         // Display status and OpMode name on controller phone
         // FORMAT:  telemetry.desiredAction("arguments");
         telemetry.addData("Status", "Initialized", "name");             // Specific info to be sent to controller phone
@@ -219,7 +220,7 @@ public class Template_AUTON_no_methods_v00 extends LinearOpMode {
     public double adjustTimeBasedOnPower(double Time, double Power){    // double
                                                                         // NOTE:    Nested IF / ELSE IF statements could be used
                                                                         //          For clarity, separate IF statements are used       
-        if (Power == DRIVE_POWER_MEDIUM){                               
+        if (Power == DRIVE_POWER_MEDIUM){
             Time = Time * DRIVE_TIME_ADJUSTER_FOR_POWER_MED;            // Increase Time to compensate for reduced power, or
         }                                                               // Leave Power unchanged if Power is not DRIVE_POWER_MEDIUM
                                                                         //
@@ -230,22 +231,23 @@ public class Template_AUTON_no_methods_v00 extends LinearOpMode {
     }
     // END of METHOD adjustTimeBasedOnPower
     //
-    // ********
+    //
     // METHOD:  driveForward(Time,Power)
     // PURPOSE: Adjust the Time value based on the requested Power
     // FORMAT:  access level, return type or void, methodName(arguments){
     public void driveForward(double Time, double Power){                // The variable names Time and Power will be assigned
                                                                         //      to the values passed into the method, in the order
                                                                         //      they are received
-        public double adjustedTime;                                     // Declare new variable to hold result of
+        final double adjustedTime = adjustTimeBasedOnPower(Time,Power); // Declare new variable to hold result of calling the
                                                                         //      adjustTimeBasedOnPower METHOD
-        adjustedTime = adjustTimeBasedOnPower(Time,Power)               // Set value of adjustedTime to result returned
-                                                                        //      by adjustTimeBasedOnPower METHOD 
+                                                                        //      and immediately define it as the result
+                                                                        //      of that METHOD call
                                                                         //
         leftDriveMotor.setPower(Power);                                 // Run motor with passed Power value
         rightDriveMotor.setPower(Power);                                // Run motor with passed Power value
-        sleep((long) adjustedTime);                                     // Wait here in code for duration of passed Time value
-                                                                        //      (allows motors to turn for duration of Time)
+        sleep((long) adjustedTime);                                     // Wait here in code for duration of passed
+                                                                        //      adjustedTime value
+                                                                        //      (allows motors to turn for duration of adjustedTime)
     } 
     // END of METHOD driveForward
     // ********
@@ -256,16 +258,17 @@ public class Template_AUTON_no_methods_v00 extends LinearOpMode {
     public void spinRight(double Time, double Power){                   // The variable names Time and Power will be assigned
                                                                         //      to the values passed into the method, in the order
                                                                         //      they are received
-        public double adjustedTime;                                     // Declare new variable to hold result of
+        final double adjustedTime = adjustTimeBasedOnPower(Time,Power); // Declare new variable to hold result of calling the
                                                                         //      adjustTimeBasedOnPower METHOD
-        adjustedTime = adjustTimeBasedOnPower(Time,Power)               // Set value of adjustedTime to result returned
-                                                                        //      by adjustTimeBasedOnPower METHOD 
+                                                                        //      and immediately define it as the result
+                                                                        //      of that METHOD call
                                                                         //
         leftDriveMotor.setPower(Power);                                 // Run motor with passed Power value
         rightDriveMotor.setPower(-Power);                               // Run motor with passed Power value inverted
                                                                         //      so motor will rotate in reverse
-        sleep((long) Time);                                             // Wait here in code for duration of passed Time value
-                                                                        //      (allows motors to run for duration of Time)
+        sleep((long) adjustedTime);                                     // Wait here in code for duration of passed
+                                                                        //      adjustedTime value
+                                                                        //      (allows motors to turn for duration of adjustedTime)
     }
     // END of METHOD spinRight 
     //
@@ -275,16 +278,17 @@ public class Template_AUTON_no_methods_v00 extends LinearOpMode {
     public void spinLeft(long Time, double Power){                      // The variable names Time and Power will be assigned
                                                                         //      to the values passed into the method, in the order
                                                                         //      they are received
-        public double adjustedTime;                                     // Declare new variable to hold result of
+        final double adjustedTime = adjustTimeBasedOnPower(Time,Power); // Declare new variable to hold result of calling the
                                                                         //      adjustTimeBasedOnPower METHOD
-        adjustedTime = adjustTimeBasedOnPower(Time,Power)               // Set value of adjustedTime to result returned
-                                                                        //      by adjustTimeBasedOnPower METHOD 
+                                                                        //      and immediately define it as the result
+                                                                        //      of that METHOD call
                                                                         //
         leftDriveMotor.setPower(-Power);                                // Run motor with passed Power value inverted
                                                                         //      so motor will rotate in reverse
         rightDriveMotor.setPower(Power);                                // Run motor with passed Power value
-        sleep(Time);                                                    // Wait here in code for duration of passed Time value
-                                                                        //      (allows motors to run for duration of Time)
+        sleep((long) adjustedTime);                                     // Wait here in code for duration of passed
+                                                                        //      adjustedTime value
+                                                                        //      (allows motors to turn for duration of adjustedTime)
     }
     // END of METHOD spinLeft
     //
@@ -292,7 +296,7 @@ public class Template_AUTON_no_methods_v00 extends LinearOpMode {
     // END of LOCALLY-DEFINED METHODS
     //****************************************************************************************************************
 }
-// END of CLASS Template_AUTON_v05a
+// END of CLASS Template_AUTON_basic_v01
 //
 //*************************************************************************************************************************
 // END OF FILE

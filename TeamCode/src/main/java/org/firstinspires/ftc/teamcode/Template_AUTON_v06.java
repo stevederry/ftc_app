@@ -1,6 +1,6 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE TO BECOME TEACHING TEMPLATE *****************************************
-// Edit Date:   September 28, 2018 @ 09:07
+// Edit Date:   October 03, 2018 @ 19:37
 // Clone Date:	September 18, 2018 @ 08:38
 // Team Name:   _____
 // Team Number: _____
@@ -235,14 +235,15 @@ public class Template_AUTON_v06 extends LinearOpMode {
     public void driveForward(double Time, double Power){                // The variable names Time and Power will be assigned
                                                                         //      to the values passed into the method, in the order
                                                                         //      they are received
-        public double adjustedTime;                                     // Declare new variable to hold result of
-                                                                        //      adjustTimeBasedOnPower METHOD
-        adjustedTime = adjustTimeBasedOnPower(Time,Power)               // Set value of adjustedTime to result returned
-                                                                        //      by adjustTimeBasedOnPower METHOD 
+        //public double adjustedTime;                                     // Declare new variable to hold result of
+        //      adjustTimeBasedOnPower METHOD
+        //adjustedTime = adjustTimeBasedOnPower(Time,Power);              // Set value of adjustedTime to result returned
+        adjustTimeBasedOnPower(Time,Power);
+        //      by adjustTimeBasedOnPower METHOD
                                                                         //
         leftDriveMotor.setPower(Power);                                 // Run motor with passed Power value
         rightDriveMotor.setPower(Power);                                // Run motor with passed Power value
-        sleep((long) adjustedTime);                                     // Wait here in code for duration of passed Time value
+        sleep((long) Time);                                     // Wait here in code for duration of passed Time value
                                                                         //      (allows motors to turn for duration of Time)
     } 
     // END of METHOD driveForward
@@ -254,9 +255,9 @@ public class Template_AUTON_v06 extends LinearOpMode {
     public void spinRight(double Time, double Power){                   // The variable names Time and Power will be assigned
                                                                         //      to the values passed into the method, in the order
                                                                         //      they are received
-        public double adjustedTime;                                     // Declare new variable to hold result of
+        // public double adjustedTime;                                     // Declare new variable to hold result of
                                                                         //      adjustTimeBasedOnPower METHOD
-        adjustedTime = adjustTimeBasedOnPower(Time,Power)               // Set value of adjustedTime to result returned
+        final double adjustedTime = adjustTimeBasedOnPower(Time,Power);              // Set value of adjustedTime to result returned
                                                                         //      by adjustTimeBasedOnPower METHOD 
                                                                         //
         leftDriveMotor.setPower(Power);                                 // Run motor with passed Power value
@@ -273,10 +274,11 @@ public class Template_AUTON_v06 extends LinearOpMode {
     public void spinLeft(long Time, double Power){                      // The variable names Time and Power will be assigned
                                                                         //      to the values passed into the method, in the order
                                                                         //      they are received
-        public double adjustedTime;                                     // Declare new variable to hold result of
-                                                                        //      adjustTimeBasedOnPower METHOD
-        adjustedTime = adjustTimeBasedOnPower(Time,Power)               // Set value of adjustedTime to result returned
-                                                                        //      by adjustTimeBasedOnPower METHOD 
+        //public double adjustedTime;                                     // Declare new variable to hold result of
+        //      adjustTimeBasedOnPower METHOD
+        //adjustedTime = adjustTimeBasedOnPower(Time,Power);              // Set value of adjustedTime to result returned
+        adjustTimeBasedOnPower(Time,Power);
+        //      by adjustTimeBasedOnPower METHOD
                                                                         //
         leftDriveMotor.setPower(-Power);                                // Run motor with passed Power value inverted
                                                                         //      so motor will rotate in reverse

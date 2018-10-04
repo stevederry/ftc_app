@@ -1,6 +1,6 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE IS A TEACHING TEMPLATE **********************************************
-// Edit Date:   September 30, 2018 @ 18:09
+// Edit Date:   October 03, 2018 @ 19:37
 // Team Name:   _____
 // Team Number: _____
 // Code Type:   OpMode for AUTONOMOUS
@@ -53,6 +53,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 //          - This file will create one CLASS, and that CLASS will be an OpMode that
 //            extends the pre-defined CLASS named LinearOpMode, which is suplied by FTC as part of the CODE PACKAGE.
 //          - Not all classes are OpModes.
+//          - The CLASS that extends the LinearOpMode MUST be named to match
+//            the FILENAME (EXcluding the ".java" extension)
 // FORMAT:  access level, class class_name, extends NameOfClass this new class extends (if any) {
 public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     //
@@ -61,7 +63,7 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     //    FORMAT:   access level, UtilityName runtime = new UtilityName();
     private ElapsedTime runtime = new ElapsedTime();        // Use private unless you need access from other classes.
     //
-    // 2. Hardware (DECLARE and INTIALIZE variables at the same time)
+    // 2. Hardware (DECLARE and INITIALIZE variables at the same time)
     //    NOTE:     - This section tells the code that, later, these names will be used to refer to items on the robot.
     //              - The robot's pieces are named in the HardwareMap using the software on the ROBOT CONTROLLER PHONE.
     //              - Values after 'get' MUST match EXACTLY the names used when the robot configuration was 
@@ -74,14 +76,6 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     DcMotor rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
     DcMotor armMotor        = hardwareMap.dcMotor.get("armMotor");                        
     Servo   gripperServo    = hardwareMap.servo.get("gripperServo");                    
-    //
-    // SET DC MOTOR DIRECTIONS
-    // NOTE:    "Reverse" any motor that runs backwards (relative to desired "forward" motion of element powered
-    //          by that motor, such as a drive wheel or extension arm) when powered by a positive power value
-    // FORMAT:  hardwareName.setDirection(DcMotor.Direction.DIRECTION)
-    leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);     
-    rightDriveMotor.setDirection(DcMotor.Direction.FORWARD);    
-    armMotor.setDirection(DcMotor.Direction.FORWARD);
     //
     // DEFINE CODE CONSTANTS
     // NOTE:    CONSTANTS should generally be defined outside of METHOD bodies,
@@ -103,7 +97,7 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
     // Drive powers (speeds): all values use range of 0 to 1
     public static final double MOTOR_STOP               = 0;
     public static final double DRIVE_POWER_FAST         = 0.8;
-    public static final double DRIVE_POWER_SLOW         = DRIVE_POWER_FAST / 2);
+    public static final double DRIVE_POWER_SLOW         = DRIVE_POWER_FAST / 2;
     public static final double ARM_MOTOR_MOVE           = .25;
     //
     // Position address values for servos
@@ -123,6 +117,15 @@ public class Template_AUTON_no_custom_methods_v00 extends LinearOpMode {
                                                                         // "InterruptedException" keeps the program 
                                                                         //    from freezing completely if there is an error
                                                                         //    that it does not know how to handle
+        //
+        // SET DC MOTOR DIRECTIONS
+        // NOTE:    "Reverse" any motor that runs backwards (relative to desired "forward" motion of element powered
+        //          by that motor, such as a drive wheel or extension arm) when powered by a positive power value
+        // FORMAT:  hardwareName.setDirection(DcMotor.Direction.DIRECTION);
+        leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightDriveMotor.setDirection(DcMotor.Direction.FORWARD);
+        armMotor.setDirection(DcMotor.Direction.FORWARD);
+        //
         // Display status and OpMode name on controller phone
         // FORMAT:  telemetry.desiredAction("arguments");
         telemetry.addData("Status", "Initialized", "name");             // Specific info to be sent to controller phone
