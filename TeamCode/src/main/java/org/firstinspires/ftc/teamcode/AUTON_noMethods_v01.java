@@ -29,7 +29,6 @@ package org.firstinspires.ftc.teamcode;
 //
 // IMPORT PROGRAMMING ELEMENTS DESCRIBED ELSEWHERE IN THE CODE PACKAGE FOR USE IN THIS FILE
 //      1. Classes (specific)
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -38,7 +37,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 //      2. Utilities (specific)
 //
 //      3. Hardware Types (ONE import per TYPE of hardware, NOT for each INSTANCE of that TYPE of hardware)
-
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 //
 // DEFINE OpMode
 // NOTE:    OpMode is the name for a set of code that contains the instructions the robot will perform. 
@@ -98,7 +98,7 @@ public class AUTON_noMethods_v01 extends LinearOpMode {
     // Drive powers (speeds): all values use range of 0 to 1
     public static final double MOTOR_STOP               = 0;
     public static final double DRIVE_POWER_FAST         = 0.8;
-    public static final double DRIVE_POWER_SLOW         = DRIVE_POWER_FAST / 2);
+    public static final double DRIVE_POWER_SLOW         = DRIVE_POWER_FAST / 2;
     //
     @Override
     // Override is a note to the compiler stating that you expect that you are replacing a METHOD
