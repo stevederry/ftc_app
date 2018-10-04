@@ -51,6 +51,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 //          - This file will create one CLASS, and that CLASS will be an OpMode that
 //            extends the pre-defined CLASS named LinearOpMode, which is suplied by FTC as part of the CODE PACKAGE.
 //          - Not all classes are OpModes.
+//          - The CLASS that extends the LinearOpMode MUST be named to match
+//            the FILENAME (EXcluding the ".java" extension)
 // FORMAT:  access level, class class_name, extends NameOfClass this new class extends (if any) {
 public class AUTON_noMethods_v01 extends LinearOpMode {
     //
