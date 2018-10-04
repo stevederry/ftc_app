@@ -1,6 +1,6 @@
 //*************************************************************************************************************************
 //***************************************** THIS FILE IS A TEACHING TEMPLATE **********************************************
-// Edit Date:   October 03, 2018 @ 19:37
+// Edit Date:   September 30, 2018 @ 18:18
 // Team Name:   _____
 // Team Number: _____
 // Code Type:   OpMode for AUTONOMOUS
@@ -71,6 +71,13 @@ public class Template_AUTON_no_custom_methods_v00a extends LinearOpMode {
     DcMotor leftDriveMotor  = hardwareMap.dcMotor.get("leftDriveMotor");
     DcMotor rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
     //
+    // SET DC MOTOR DIRECTIONS
+    // NOTE:    "Reverse" any motor that runs backwards (relative to desired "forward" motion of element powered
+    //          by that motor, such as a drive wheel or extension arm) when powered by a positive power value
+    // FORMAT:  hardwareName.setDirection(DcMotor.Direction.DIRECTION)
+    leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);     
+    rightDriveMotor.setDirection(DcMotor.Direction.FORWARD);    
+    //
     // DEFINE CODE CONSTANTS
     // NOTE:    CONSTANTS should generally be defined outside of METHOD bodies,
     //          instead of inside runOpMode() or any other METHOD,
@@ -91,7 +98,7 @@ public class Template_AUTON_no_custom_methods_v00a extends LinearOpMode {
     // Drive powers (speeds): all values use range of 0 to 1
     public static final double MOTOR_STOP               = 0;
     public static final double DRIVE_POWER_FAST         = 0.8;
-    public static final double DRIVE_POWER_SLOW         = (DRIVE_POWER_FAST / 2);
+    public static final double DRIVE_POWER_SLOW         = DRIVE_POWER_FAST / 2);
     //
     @Override
     // Override is a note to the compiler stating that you expect that you are replacing a METHOD
@@ -106,14 +113,6 @@ public class Template_AUTON_no_custom_methods_v00a extends LinearOpMode {
                                                                         // "InterruptedException" keeps the program 
                                                                         //    from freezing completely if there is an error
                                                                         //    that it does not know how to handle
-        //
-        // SET DC MOTOR DIRECTIONS
-        // NOTE:    "Reverse" any motor that runs backwards (relative to desired "forward" motion of element powered
-        //          by that motor, such as a drive wheel or extension arm) when powered by a positive power value
-        // FORMAT:  hardwareName.setDirection(DcMotor.Direction.DIRECTION);
-        leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);
-        rightDriveMotor.setDirection(DcMotor.Direction.FORWARD);
-        //
         // Display status and OpMode name on controller phone
         // FORMAT:  telemetry.desiredAction("arguments");
         telemetry.addData("Status", "Initialized", "name");             // Specific info to be sent to controller phone
