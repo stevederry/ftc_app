@@ -5,7 +5,7 @@
 // Team Number: _____
 // Code Type:   OpMode for AUTONOMOUS
 // NOTE:        This code is based on Template_AUTON_no_custom_methods_v00,
-//              but removes the servo. and the arm.
+//              but removes the gripperServo and the armMotor.
 // Description: Order of operations
 //               0.  Start at predetermined location (positioned by drivers prior to game start)
 //                   with robot gripper holding a pre-loaded item
@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode;
 //      1. Classes (specific)
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;               
 import com.qualcomm.robotcore.hardware.DcMotor;
 //
 //      2. Utilities (specific)
@@ -42,7 +43,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 //
 // DEFINE OpMode
 // NOTE:    OpMode is the name for a set of code that contains the instructions the robot
-//            will perform. It is a class inside the ftc_app code package supplied by FTC.
+//            will perform. It is a CLASS inside the ftc_app code package supplied by FTC.
 //          The NAME porperty:
 //            - Can be any text that helps the user identify this program.
 //            - Does NOT need to be the same as the FILENAME
@@ -58,7 +59,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 //            by FTC as part of the CODE PACKAGE.
 //          - Not all classes are OpModes.
 //          - The public CLASS name MUST match the FILENAME (EXcluding the ".java" extension)
-// FORMAT:  access level, class class_name, extends NameOfClass this new class extends (if any) {
+// FORMAT:  access level, class class_name, extends NameOfClass_this_new_class_extends_(if_any) {
 public class AUTON_noMethods_v01 extends LinearOpMode {
     //
     // DECLARE OpMode MEMBERS
