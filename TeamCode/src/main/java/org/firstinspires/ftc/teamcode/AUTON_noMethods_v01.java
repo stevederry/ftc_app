@@ -1,12 +1,12 @@
 //*************************************************************************************************************************
-//***************************************** THIS FILE IS A TEACHING TEMPLATE **********************************************
-// Edit Date:   October 04, 2018 @ 08:07
+//*************************************************************************************************************************
+// Edit Date:   October 05, 2018 @ 12:42
 // Team Name:   _____
 // Team Number: _____
 // Code Type:   OpMode for AUTONOMOUS
-// Description: Brief description of what this code does:
 // NOTE:        This code is based on Template_AUTON_no_custom_methods_v00,
 //              but removes the servo. and the arm.
+// Description: Order of operations
 //               0.  Start at predetermined location (positioned by drivers prior to game start)
 //                   with robot gripper holding a pre-loaded item
 //               1.  Drive FORWARD, FAST, for 3 seconds
@@ -41,18 +41,23 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 //
 // DEFINE OpMode
-// NOTE:    OpMode is the name for a set of code that contains the instructions the robot will perform. 
-//          It is a class inside the ftc_app code package supplied by FTC.
+// NOTE:    OpMode is the name for a set of code that contains the instructions the robot
+//            will perform. It is a class inside the ftc_app code package supplied by FTC.
+//          The NAME porperty:
+//            - Can be any text that helps the user identify this program.
+//            - Does NOT need to be the same as the FILENAME
+//            - Will be displayed on the DRIVER CONTROL phone when the user chooses which program to run
+//          The GROUP property can be any text that helps the user group this program with related programs
 // FORMAT:  @type(name="OpMode_Name", group="GroupName") 
 @Autonomous(name="AUTON_noMethods_v01", group="Derry_FTC_Templates")
 //
 // DEFINE class
-// NOTE:    - All JAVA files must have at least one CLASS, but can have more.
+// NOTE:    - All JAVA files must have at least one public CLASS, but can have more, as long as they are private.
 //          - This file will create one CLASS, and that CLASS will be an OpMode that
-//            extends the pre-defined CLASS named LinearOpMode, which is suplied by FTC as part of the CODE PACKAGE.
+//            extends the pre-defined CLASS named LinearOpMode, which is suplied
+//            by FTC as part of the CODE PACKAGE.
 //          - Not all classes are OpModes.
-//          - The CLASS that extends the LinearOpMode MUST be named to match
-//            the FILENAME (EXcluding the ".java" extension)
+//          - The public CLASS name MUST match the FILENAME (EXcluding the ".java" extension)
 // FORMAT:  access level, class class_name, extends NameOfClass this new class extends (if any) {
 public class AUTON_noMethods_v01 extends LinearOpMode {
     //
@@ -73,7 +78,6 @@ public class AUTON_noMethods_v01 extends LinearOpMode {
     DcMotor leftDriveMotor  = hardwareMap.dcMotor.get("leftDriveMotor");
     DcMotor rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
     //
-
     // DEFINE CODE CONSTANTS
     // NOTE:    CONSTANTS should generally be defined outside of METHOD bodies,
     //          instead of inside runOpMode() or any other METHOD,
@@ -142,6 +146,7 @@ public class AUTON_noMethods_v01 extends LinearOpMode {
         //
         //   0.  Start at predetermined location (positioned by drivers prior to game start)
         //       with robot gripper holding a pre-loaded item
+        //
         //   1.  Drive FORWARD, FAST, for 3 seconds
         leftDriveMotor.setPower(DRIVE_POWER_FAST);
         rightDriveMotor.setPower(DRIVE_POWER_FAST);
