@@ -31,16 +31,13 @@ package org.firstinspires.ftc.teamcode;
 //      1. Classes (specific)
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-//import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.DcMotor;
 //
 //      2. Utilities (specific)
 import com.qualcomm.robotcore.util.ElapsedTime;
 //
 //      3. Hardware Types (ONE import per TYPE of hardware, NOT for each INSTANCE of that TYPE of hardware)
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
+//import com.qualcomm.robotcore.hardware.Servo;
 //
 // DEFINE OpMode
 // NOTE:    OpMode is the name for a set of code that contains the instructions the robot
@@ -62,16 +59,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 //          - The public CLASS name MUST match the FILENAME (EXcluding the ".java" extension)
 // FORMAT:  access level, class class_name, extends NameOfClass_this_new_class_extends_(if_any) {
 public class AUTON_noMethods_v01 extends LinearOpMode {
-    //
-    // FIXME
-    // INITIALIZE HardwareMap
-    // public init(hardwareMap);
-
     // DECLARE OpMode MEMBERS
     // 1. Utilities
     //    FORMAT:   access level, UtilityName runtime = new UtilityName();
     private ElapsedTime runtime = new ElapsedTime();        // Use private unless you need access from other classes.
-    //
+    // FIXME
     // 2. Hardware (DECLARE and INTIALIZE variables at the same time)
     //    NOTE:     - This section tells the code that, later, these names will be used to refer to items on the robot.
     //              - The robot's pieces are named in the HardwareMap using the software on the ROBOT CONTROLLER PHONE.
@@ -81,10 +73,8 @@ public class AUTON_noMethods_v01 extends LinearOpMode {
     //                the HardwareMap. This is not required, but is recommended because it keeps communication
     //                clear and usage consistent.
     //    FORMAT:   HardwareType hardwareVariableName = hardwareMap.hardwareType.get("nameAsAssignedInHardwareMap");             
- //   DcMotor leftDriveMotor  = hardwareMap.get(DcMotor.class, "leftDriveMotor");
- //   DcMotor rightDriveMotor = hardwareMap.get(DcMotor.class, "rightDriveMotor");
-    DcMotor leftDriveMotor  = hardwareMap.dcMotor.get("leftDriveMotor");
-    DcMotor rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
+    DcMotor leftDriveMotor;
+    DcMotor rightDriveMotor;
     //
     // DEFINE CODE CONSTANTS
     // NOTE:    CONSTANTS should generally be defined outside of METHOD bodies,
@@ -121,7 +111,12 @@ public class AUTON_noMethods_v01 extends LinearOpMode {
                                                                         // "InterruptedException" keeps the program 
                                                                         //    from freezing completely if there is an error
                                                                         //    that it does not know how to handle
-        // SET DC MOTOR DIRECTIONS
+    // SET HARDWARE VARIABLE VALUES
+    // FORMAT:  variableName = hardwareMap.hardwareType.get("nameInHardwareMap");
+    leftDriveMotor  = hardwareMap.dcMotor.get("leftDriveMotor");
+    rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
+      
+      // SET DC MOTOR DIRECTIONS
         // NOTE:    "Reverse" any motor that runs backwards (relative to desired "forward" motion of element powered
         //          by that motor, such as a drive wheel or extension arm) when powered by a positive power value
         // FORMAT:  hardwareName.setDirection(DcMotor.Direction.DIRECTION)
