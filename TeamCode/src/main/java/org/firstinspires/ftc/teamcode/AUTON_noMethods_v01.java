@@ -31,7 +31,8 @@ package org.firstinspires.ftc.teamcode;
 //      1. Classes (specific)
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.HardwareMap;               
+import com.qualcomm.robotcore.hardware.DcMotor;
+//import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
 //
 //      2. Utilities (specific)
@@ -62,6 +63,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 // FORMAT:  access level, class class_name, extends NameOfClass_this_new_class_extends_(if_any) {
 public class AUTON_noMethods_v01 extends LinearOpMode {
     //
+    // FIXME
+    // INITIALIZE HardwareMap
+    // public init(hardwareMap);
+
     // DECLARE OpMode MEMBERS
     // 1. Utilities
     //    FORMAT:   access level, UtilityName runtime = new UtilityName();
@@ -76,6 +81,8 @@ public class AUTON_noMethods_v01 extends LinearOpMode {
     //                the HardwareMap. This is not required, but is recommended because it keeps communication
     //                clear and usage consistent.
     //    FORMAT:   HardwareType hardwareVariableName = hardwareMap.hardwareType.get("nameAsAssignedInHardwareMap");             
+ //   DcMotor leftDriveMotor  = hardwareMap.get(DcMotor.class, "leftDriveMotor");
+ //   DcMotor rightDriveMotor = hardwareMap.get(DcMotor.class, "rightDriveMotor");
     DcMotor leftDriveMotor  = hardwareMap.dcMotor.get("leftDriveMotor");
     DcMotor rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
     //
