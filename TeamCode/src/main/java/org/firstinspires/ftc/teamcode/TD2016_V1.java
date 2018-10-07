@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@Autonomous(name="Blue_TechDogauto Final")
+@Autonomous(name="TD2016_V1")
 
 public class TD2016_V1 extends LinearOpMode {
     DcMotor leftDriveMotor;
