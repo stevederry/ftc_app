@@ -1,14 +1,13 @@
 // *************************************************************************************************************************
 // *************************************************************************************************************************
-// Edit Date:   October 07, 2018 @ 20:31
+// Edit Date:   October 08, 2018 @ 10:50
 // Team Name:   _____
 // Team Number: _____
 // Code Type:   OpMode for AUTONOMOUS
-// NOTE:        This code is based on Template_AUTON_no_custom_methods_v00,
-//              but removes the gripperServo and the armMotor.
+// NOTE:        This code is based on AUTON_noMethods_v01a,
+//              but adds custom METHODS stored in this file.
 // Description: Order of operations
 //               0.  Start at predetermined location (positioned by drivers prior to game start)
-//                   with robot gripper holding a pre-loaded item
 //               1.  Drive FORWARD, FAST, for 3 seconds
 //               2.  STOP driving
 //               3.  Spin LEFT, FAST, for 1 second
@@ -128,7 +127,7 @@ public class AUTON_withMethods_v01c extends LinearOpMode {
         //
         // Display status and OpMode name on controller phone
         // FORMAT:  telemetry.desiredAction("arguments");
-        telemetry.addData("Status", "Initialized");                     // Specific info to be sent to controller phone
+        telemetry.addData("Status", "Initialized");       // Specific info to be sent to controller phone
         telemetry.update();                                             // Send info to controller phone
         //
         // SET ALL MOTORS TO DESIRED STARTING STATUS
@@ -164,7 +163,7 @@ public class AUTON_withMethods_v01c extends LinearOpMode {
                                                                 //      can turn for the time entered as X
         //
         //   2.  STOP driving
-        stopRobot();                                            // Call stopRobot METHOD to set drive motor
+        stopDriveMotors();                                            // Call stopDriveMotors METHOD to set drive motor
                                                                 //      powers to zero
         sleep(1000);                                //  Wait 1 second
         //
@@ -176,7 +175,7 @@ public class AUTON_withMethods_v01c extends LinearOpMode {
         sleep(1000);                                            //  Spin for 1 second
         //
         //   4.  STOP spinning
-        stopRobot();                                            // Call stopRobot METHOD to set drive motor
+        stopDriveMotors();                                            // Call stopDriveMotors METHOD to set drive motor
                                                                 //      powers to zero
         sleep(1000);                                //  Wait 1 second
         //
@@ -186,7 +185,7 @@ public class AUTON_withMethods_v01c extends LinearOpMode {
         sleep(2000);                                            //  Drive motors for 2 seconds
         //
         //   6.  STOP driving
-        stopRobot();                                            // Call stopRobot METHOD to set drive motor
+        stopDriveMotors();                                            // Call stopDriveMotors METHOD to set drive motor
                                                                 //      powers to zero
         sleep(1000);                                //  Wait 1 second
         //
@@ -199,7 +198,7 @@ public class AUTON_withMethods_v01c extends LinearOpMode {
         sleep(2000);                                            //  Drive motors for 2 seconds
         //
         //   8.  STOP spinning
-        stopRobot();                                            // Call stopRobot METHOD to set drive motor
+        stopDriveMotors();                                            // Call stopDriveMotors METHOD to set drive motor
                                                                 //      powers to zero
         //
         //   9.  Wait for Teleop
@@ -220,16 +219,16 @@ public class AUTON_withMethods_v01c extends LinearOpMode {
     //            section of code that is calling it.
     //
     // ********
-    // METHOD:  stopRobot()
+    // METHOD:  stopDriveMotors()
     // PURPOSE: Stop all motors at current location by setting all power to zero
     // FORMAT:  access level, return type or void, methodName(arguments){
-    public void stopRobot(){                                // The empty "()" section means that this method
+    public void stopDriveMotors(){                                // The empty "()" section means that this method
         leftDriveMotor.setPower(MOTOR_STOP);                //      does not rely on values passed into it
         rightDriveMotor.setPower(MOTOR_STOP);               //      from the section of code that calls it, and
                                                             //      uses the values entered directly here
                                                             //      (MOTOR_STOP in this case)
     }
-    // END of METHOD stopRobot
+    // END of METHOD stopDriveMotors
     //
 }
 // END of CLASS AUTON_withMethods_v01c
