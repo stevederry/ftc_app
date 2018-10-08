@@ -29,14 +29,17 @@ package org.firstinspires.ftc.teamcode;
 //
 // IMPORT PROGRAMMING ELEMENTS DESCRIBED ELSEWHERE IN THE CODE PACKAGE FOR USE IN THIS FILE
 //      1. Classes (specific)
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
 //
 //      2. Utilities (specific)
-import com.qualcomm.robotcore.util.ElapsedTime;
 //
 //      3. Hardware Types (ONE import per TYPE of hardware, NOT for each INSTANCE of that TYPE of hardware)
-import com.qualcomm.robotcore.hardware.DcMotor;
+
 //import com.qualcomm.robotcore.hardware.Servo;
 //
 // DEFINE OpMode
@@ -58,7 +61,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 //          - Not all classes are OpModes.
 //          - The public CLASS name MUST match the FILENAME (EXcluding the ".java" extension)
 // FORMAT:  access level, class class_name, extends NameOfClass_this_new_class_extends_(if_any) {
-public class AUTON_noMethods_v01 extends LinearOpMode {
+public class AUTON_noMethods_v01a extends LinearOpMode {
     // DECLARE OpMode MEMBERS
     // 1. Utilities
     //    FORMAT:   access level, UtilityName runtime = new UtilityName();
