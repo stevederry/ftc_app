@@ -159,13 +159,14 @@ public class AUTON_withMethods_v01c extends LinearOpMode {
         //   1.  Drive FORWARD, FAST, for 3 seconds
         leftDriveMotor.setPower(DRIVE_POWER_FAST);
         rightDriveMotor.setPower(DRIVE_POWER_FAST);
-        sleep(3000);                                            //  Drive for 3000 miliseconds (3 seconds)
-        //  Sleep(X) pauses code execution so that motors
-        //      can turn for the time entered as X
+        sleep(3000);                                //  Drive for 3000 miliseconds (3 seconds)
+                                                                //  Sleep(X) pauses code execution so that motors
+                                                                //      can turn for the time entered as X
         //
         //   2.  STOP driving
-        leftDriveMotor.setPower(MOTOR_STOP);                    //  You could enter 0 here instead of the variable MOTOR_STOP,
-        rightDriveMotor.setPower(MOTOR_STOP);                   //      but this keeps the code readable
+        stopRobot();                                            // Call stopRobot METHOD to set drive motor
+                                                                //      powers to zero
+        sleep(1000);                                //  Wait 1 second
         //
         //   3.  Spin LEFT, FAST, for 1 second
         leftDriveMotor.setPower(-DRIVE_POWER_FAST);             //  Negative value to make motor spin wheel backward
@@ -175,8 +176,9 @@ public class AUTON_withMethods_v01c extends LinearOpMode {
         sleep(1000);                                            //  Spin for 1 second
         //
         //   4.  STOP spinning
-        leftDriveMotor.setPower(MOTOR_STOP);
-        rightDriveMotor.setPower(MOTOR_STOP);
+        stopRobot();                                            // Call stopRobot METHOD to set drive motor
+                                                                //      powers to zero
+        sleep(1000);                                //  Wait 1 second
         //
         //   5.  Drive FORWARD, FAST, for 2 seconds
         leftDriveMotor.setPower(DRIVE_POWER_FAST);
@@ -184,8 +186,9 @@ public class AUTON_withMethods_v01c extends LinearOpMode {
         sleep(2000);                                            //  Drive motors for 2 seconds
         //
         //   6.  STOP driving
-        leftDriveMotor.setPower(MOTOR_STOP);
-        rightDriveMotor.setPower(MOTOR_STOP);
+        stopRobot();                                            // Call stopRobot METHOD to set drive motor
+                                                                //      powers to zero
+        sleep(1000);                                //  Wait 1 second
         //
         //   7.  Spin RIGHT, SLOWLY, for 2 seconds
         leftDriveMotor.setPower(DRIVE_POWER_SLOW);
@@ -196,8 +199,8 @@ public class AUTON_withMethods_v01c extends LinearOpMode {
         sleep(2000);                                            //  Drive motors for 2 seconds
         //
         //   8.  STOP spinning
-        leftDriveMotor.setPower(MOTOR_STOP);
-        rightDriveMotor.setPower(MOTOR_STOP);
+        stopRobot();                                            // Call stopRobot METHOD to set drive motor
+                                                                //      powers to zero
         //
         //   9.  Wait for Teleop
     }
@@ -206,8 +209,30 @@ public class AUTON_withMethods_v01c extends LinearOpMode {
     //****************************************************************************************************************
     // END of AUTONOMOUS code
     //****************************************************************************************************************
+    //
+    //****************************************************************************************************************
+    // BEGIN LOCALLY-DEFINED METHODS
+    //****************************************************************************************************************
+    // NOTE:    METHODS are sections of code that are written once but can be used ("called") by the program multiple times.
+    //          - A METHOD can have all of its values set internally (see robotStop, below),
+    //            or use values passed to it each time the program calls the METHOD (see driveForward, below).
+    //          - VARIABLES allow the METHOD's code to be written once but adapt to different situations in the
+    //            section of code that is calling it.
+    //
+    // ********
+    // METHOD:  stopRobot()
+    // PURPOSE: Stop all motors at current location by setting all power to zero
+    // FORMAT:  access level, return type or void, methodName(arguments){
+    public void stopRobot(){                                // The empty "()" section means that this method
+        leftDriveMotor.setPower(MOTOR_STOP);                //      does not rely on values passed into it
+        rightDriveMotor.setPower(MOTOR_STOP);               //      from the section of code that calls it, and
+                                                            //      uses the values entered directly here
+                                                            //      (MOTOR_STOP in this case)
+    }
+    // END of METHOD stopRobot
+    //
 }
-// END of CLASS AUTON_noMethods_v01
+// END of CLASS AUTON_withMethods_v01c
 //
 //*************************************************************************************************************************
 // END OF FILE

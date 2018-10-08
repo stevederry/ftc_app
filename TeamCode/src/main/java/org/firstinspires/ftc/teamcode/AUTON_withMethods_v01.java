@@ -208,7 +208,8 @@ public class AUTON_withMethods_v01 extends LinearOpMode {
     public void stopRobot(){                                // The empty "()" section means that this method
         leftDriveMotor.setPower(0);                         //      does not rely on values passed into it
         rightDriveMotor.setPower(0);                        //      from the section of code that calls it, and
-        sweeperMotor.setPower(0);                           //      uses the values entered directly here (0 in this case)
+                                                            //      uses the values entered directly here
+                                                            //      (0 in this case)
     }                                                       
     // END of METHOD stopRobot
     //
