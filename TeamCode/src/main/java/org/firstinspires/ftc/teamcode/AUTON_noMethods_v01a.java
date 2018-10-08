@@ -40,13 +40,13 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 //
 // DEFINE OpMode
 // NOTE:    OpMode is the name for a set of code that contains the instructions the robot
-//            will perform. It is a CLASS inside the ftc_app code package supplied by FTC.
-//          The NAME porperty:
+//              will perform. It is a CLASS inside the ftc_app code package supplied by FTC.
+//          The NAME property:
 //            - Can be any text that helps the user identify this program.
 //            - Will be displayed on the DRIVER CONTROL phone when the user chooses which program to run
 //            - Does NOT need to be the same as the FILENAME, but often is. The most common reason
 //              to name the OpMode differently from the FILE is to allow the OpMode name as displayed on
-//              the DRVIER CONTROL phone to have a shortened name that sorts in a desired order.
+//              the DRIVER CONTROL phone to have a shortened name that sorts in a desired order.
 //          The GROUP property can be any text that helps the user group this program with related programs
 // FORMAT:  @type(name="OpMode_Name", group="GroupName") 
 @Autonomous(name="AUTON_noMethods_v01a", group="Derry_FTC_Templates")
