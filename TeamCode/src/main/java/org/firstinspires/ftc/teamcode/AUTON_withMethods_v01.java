@@ -232,8 +232,9 @@ public class AUTON_withMethods_v01 extends LinearOpMode {
         return Time;
     }
     // END of METHOD adjustTimeBasedOnPower
+    // ********
     //
-    //
+    // ********
     // METHOD:  driveForward(Time,Power)
     // PURPOSE: Adjust the Time value based on the requested Power
     // FORMAT:  access level, return type or void, methodName(arguments){
@@ -254,6 +255,7 @@ public class AUTON_withMethods_v01 extends LinearOpMode {
     // END of METHOD driveForward
     // ********
     //
+    // ********
     // METHOD:  spinRight(Time,Power)
     // PURPOSE: Adjust the Time value based on the requested Power
     // FORMAT:  access level, return type or void, methodName(arguments){
@@ -273,7 +275,9 @@ public class AUTON_withMethods_v01 extends LinearOpMode {
                                                                         //      (allows motors to turn for duration of adjustedTime)
     }
     // END of METHOD spinRight 
+    // ********
     //
+    // ********
     // METHOD:  spinLeft(Time,Power)
     // PURPOSE: Adjust the Time value based on the requested Power
     // FORMAT:  access level, return type or void, methodName(arguments){                     
@@ -293,6 +297,7 @@ public class AUTON_withMethods_v01 extends LinearOpMode {
                                                                         //      (allows motors to turn for duration of adjustedTime)
     }
     // END of METHOD spinLeft
+    // ********
     //
     //****************************************************************************************************************
     // END of LOCALLY-DEFINED METHODS
