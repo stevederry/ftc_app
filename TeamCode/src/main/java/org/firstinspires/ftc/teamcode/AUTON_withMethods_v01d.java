@@ -144,8 +144,8 @@ public class AUTON_withMethods_v01d extends LinearOpMode {
         //
         // SET ALL MOTORS TO DESIRED STARTING STATUS
         //      DC Motors
-        leftDriveMotor.setPower(0);                                     // All DC motors STOPPED
-        rightDriveMotor.setPower(0);
+        leftDriveMotor.setPower(MOTOR_STOP);                            // All DC motors STOPPED
+        rightDriveMotor.setPower(MOTOR_STOP);
         //
         // ****************************************************************************************************************
         // END OF PREPARATIONS
