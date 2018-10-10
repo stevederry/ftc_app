@@ -1,6 +1,6 @@
 // *************************************************************************************************************************
 // *************************************************************************************************************************
-// Edit Date:   October 10, 2018 @ 17:08
+// Edit Date:   October 10, 2018 @ 17:13
 // Team Name:   _____
 // Team Number: _____
 // Code Type:   Repository for custom METHODS to be used by multiple OpMode file for AUTONOMOUS and TELEOP
@@ -22,7 +22,7 @@ package org.firstinspires.ftc.teamcode;
         // TODO: Figure out which things need to be:
         //       - In this file
         //       - In the OpMode file
-        //       - In a differenet file or files
+        //       - In a different file or files
         //       - In some combination of the above
         //
 // IMPORT PROGRAMMING ELEMENTS DESCRIBED ELSEWHERE IN THE CODE PACKAGE FOR USE IN THIS FILE
