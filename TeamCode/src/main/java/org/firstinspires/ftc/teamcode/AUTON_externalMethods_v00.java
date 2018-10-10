@@ -1,6 +1,6 @@
 // *************************************************************************************************************************
 // *************************************************************************************************************************
-// Edit Date:   October 10, 2018 @ 16:50
+// Edit Date:   October 10, 2018 @ 17:16
 // Team Name:   _____
 // Team Number: _____
 // Code Type:   OpMode for AUTONOMOUS
@@ -28,7 +28,7 @@ package org.firstinspires.ftc.teamcode;
         import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
         //
         // TODO:  Is this where we tell this file how/where to find the custom METHODS stored in external file?
-        //
+        //import TeamCode.src.main.java.org.firstinspires.ftc.teamcode;    // <<-- is that even close???
 //
 //      2. Utilities
         import com.qualcomm.robotcore.util.ElapsedTime;
