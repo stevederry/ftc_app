@@ -51,7 +51,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 //              the DRIVER CONTROL phone to have a shortened name that sorts in a desired order.
 //          The GROUP property can be any text that helps the user group this program with related programs
 // FORMAT:  @type(name="OpMode_Name", group="GroupName")
-@Autonomous(name="AUTON_withExternalConstants_v00", group="Derry_FTC_Templates")
+@Autonomous(name="AUTON_withExternalConstantsAndMethods_v00", group="Derry_FTC_Templates")
 //
 // DEFINE class
 // NOTE:    - All JAVA files must have at least one public CLASS, but can have more,
@@ -62,7 +62,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 //          - Not all CLASSES are OpModes.
 //          - The public CLASS name MUST match the FILENAME (EXcluding the ".java" extension)
 // FORMAT:  access level, class class_name, extends NameOfClass_this_new_class_extends_(if_any) {
-public class AUTON_withExternalConstants_v00 extends LinearOpMode {
+public class AUTON_withExternalConstantsAndMethods_v00 extends LinearOpMode {
     // DECLARE OpMode MEMBERS
     // 1. Utilities
     //    FORMAT:   access level, UtilityName runtime = new UtilityName();
@@ -294,7 +294,7 @@ public class AUTON_withExternalConstants_v00 extends LinearOpMode {
     // ********
     // ********
 }
-// END of CLASS AUTON_withExternalConstants_v00
+// END of CLASS
 //
 // *************************************************************************************************************************
 // END OF FILE
