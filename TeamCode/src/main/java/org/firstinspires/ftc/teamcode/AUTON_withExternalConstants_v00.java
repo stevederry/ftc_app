@@ -32,7 +32,7 @@ package org.firstinspires.ftc.teamcode;
 //      1. Classes
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import org.firstinspires.ftc.teamcode.Constants;
+//import org.firstinspires.ftc.teamcode.Constants;  TODO: Delete this import line??
 //
 //      2. Utilities
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -74,8 +74,9 @@ public class AUTON_withExternalConstants_v00 extends LinearOpMode {
     DcMotor leftDriveMotor;
     DcMotor rightDriveMotor;
     //
+    //  TODO: Delete this note about CONSTANTS after confirming that this OpMode works with external CONSTANTS
     // CONSTANTS were defined here but have been moved to Constants CLASS in separate Constants.java file
-  //
+    //
     @Override
     // Override is a note to the compiler stating that you expect that you are replacing a METHOD
     //    with the same name in the parent (extends ______ class) with this METHOD. This way, if you typo/change
@@ -107,7 +108,7 @@ public class AUTON_withExternalConstants_v00 extends LinearOpMode {
         leftDriveMotor.setDirection(DcMotor.Direction.REVERSE);
         rightDriveMotor.setDirection(DcMotor.Direction.FORWARD);
         //
-        // Display status and OpMode name on controller phone
+        // Display status on ROBOT CONTROLLER phone
         // FORMAT:  telemetry.desiredAction("arguments");
         telemetry.addData("Status", "Initialized");       // Specific info to be sent to controller phone
         telemetry.update();                                             // Send info to controller phone
@@ -217,12 +218,12 @@ public class AUTON_withExternalConstants_v00 extends LinearOpMode {
     // FORMAT:  access level, return type or void, methodName(arguments){
     public double adjustTimeBasedOnPower(double Time, double Power){    // NOTE:    Nested IF / ELSE IF statements could be used
                                                                         //          For clarity, separate IF statements are used
-        if (Power == DRIVE_POWER_MEDIUM){
-            Time = Time * DRIVE_TIME_ADJUSTER_FOR_POWER_MED;            // Increase Time to compensate for reduced power, or
+        if (Power == Constants.DRIVE_POWER_MEDIUM){
+            Time = Time * Constants.DRIVE_TIME_ADJUSTER_FOR_POWER_MED;            // Increase Time to compensate for reduced power, or
         }                                                               // Leave Power unchanged if Power is not DRIVE_POWER_MEDIUM
         //
-        if (Power == DRIVE_POWER_SLOW){
-            Time = Time * DRIVE_TIME_ADJUSTER_FOR_POWER_SLOW;           // Increase Time to compensate for reduced power, or
+        if (Power == Constants.DRIVE_POWER_SLOW){
+            Time = Time * Constants.DRIVE_TIME_ADJUSTER_FOR_POWER_SLOW;           // Increase Time to compensate for reduced power, or
         }                                                               // Leave Power unchanged if Power is not DRIVE_POWER_SLOW
         return Time;
     }
