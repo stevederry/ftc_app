@@ -1,11 +1,12 @@
 // *************************************************************************************************************************
 // *************************************************************************************************************************
-// Edit Date:   October 10, 2018 @ 17:13
-// Team Name:   _____
-// Team Number: _____
-// Code Type:   Repository for custom METHODS to be used by multiple OpMode file for AUTONOMOUS and TELEOP
+// Edit Date:   October 11, 2018 @ 12:04
+// Team Name:   Lightning Robotics
+// Team Number: FRC862
+// Code Type:   Repository for custom METHODS to be used by multiple OpMode files for AUTONOMOUS and TELEOP
 //              for control of DC Motors and Servo Motors.
 // NOTE:        This code is based on AUTON_withMethods_v01d, but moves custom METHODS to external location.
+//              This code also uses the external CLASS, Constants.
 // METHOD List: - stopDriveMotors
 //              - adjustTimeBasedOnPower
 //              - driveForward
@@ -43,12 +44,12 @@ public class MotorMethods_v00 {
     //           = means "____ is now equal to ____"
     // FORMAT:  access level, return type or void, methodName(arguments){
     public static double adjustTimeBasedOnPower(double Time, double Power){
-        if (Power == DRIVE_POWER_MEDIUM){
-            Time = Time * DRIVE_TIME_ADJUSTER_FOR_POWER_MED;            
+        if (Power == Constants.DRIVE_POWER_MEDIUM){
+            Time = Time * Constants.DRIVE_TIME_ADJUSTER_FOR_POWER_MED;
         }
         //
-        if (Power == DRIVE_POWER_SLOW){
-            Time = Time * DRIVE_TIME_ADJUSTER_FOR_POWER_SLOW;
+        if (Power == Constants.DRIVE_POWER_SLOW){
+            Time = Time * Constants.DRIVE_TIME_ADJUSTER_FOR_POWER_SLOW;
         }
         return Time;
     }
