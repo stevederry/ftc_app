@@ -17,38 +17,10 @@
 //
 // DEFINE CODE PACKAGE      
 package org.firstinspires.ftc.teamcode;
-//
-        //
-        // TODO: Figure out which things need to be:
-        //       - In this file
-        //       - In the OpMode file
-        //       - In a different file or files
-        //       - In some combination of the above
-        //
-// IMPORT PROGRAMMING ELEMENTS DESCRIBED ELSEWHERE IN THE CODE PACKAGE FOR USE IN THIS FILE
-//      1. Classes
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-//
-//      2. Utilities
-import com.qualcomm.robotcore.util.ElapsedTime;
-//
-//      3. Hardware Types (ONE import per TYPE of hardware, NOT for each INSTANCE of that TYPE of hardware)
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-// Use private unless you need access from other classes.
-        //
-        // 2. Hardware
-        //    FORMAT:   HardwareType variableName;
-        DcMotor leftDriveMotor;
-        DcMotor rightDriveMotor;
-
-        // SET HARDWARE VARIABLE VALUES
-        // FORMAT:  variableName = hardwareMap.hardwareType.get("nameInHardwareMap");
-        leftDriveMotor  = hardwareMap.dcMotor.get("leftDriveMotor");
-        rightDriveMotor = hardwareMap.dcMotor.get("rightDriveMotor");
-//
-public class DC_Motor_and_Servo_Methods_v00 {
+public class MotorMethods_v00 {
     // ****************************************************************************************************************
     // BEGIN METHODS DEFINED HERE FOR USE IN OTHER FILES
     // ****************************************************************************************************************
@@ -57,8 +29,8 @@ public class DC_Motor_and_Servo_Methods_v00 {
     // METHOD:  stopDriveMotors()
     // PURPOSE: Stop all motors at current location by setting all power to zero
     // FORMAT:  access level, return type or void, methodName(arguments){
-    public void stopDriveMotors(){                                
-        leftDriveMotor.setPower(MOTOR_STOP);                
+    public static void stopDriveMotors(DcMotor leftDriveMotor, DcMotor rightDriveMotor, double MOTOR_STOP){
+        leftDriveMotor.setPower(MOTOR_STOP);
         rightDriveMotor.setPower(MOTOR_STOP);
     }
     // END of METHOD stopDriveMotors
@@ -70,7 +42,7 @@ public class DC_Motor_and_Servo_Methods_v00 {
     // NOTE:    == means "____ is currently equal to ____"
     //           = means "____ is now equal to ____"
     // FORMAT:  access level, return type or void, methodName(arguments){
-    public double adjustTimeBasedOnPower(double Time, double Power){    
+    public static double adjustTimeBasedOnPower(double Time, double Power){
         if (Power == DRIVE_POWER_MEDIUM){
             Time = Time * DRIVE_TIME_ADJUSTER_FOR_POWER_MED;            
         }
@@ -86,7 +58,7 @@ public class DC_Motor_and_Servo_Methods_v00 {
     // METHOD:  driveForward(Time,Power)
     // PURPOSE: Adjust the Time value based on the requested Power
     // FORMAT:  access level, return type or void, methodName(arguments){
-    public void driveForward(double Time, double Power){
+    public static void driveForward(double Time, double Power){
         final double adjustedTime = adjustTimeBasedOnPower(Time,Power); 
         leftDriveMotor.setPower(Power);
         rightDriveMotor.setPower(Power);
@@ -98,7 +70,7 @@ public class DC_Motor_and_Servo_Methods_v00 {
     // METHOD:  spinRight(Time,Power)
     // PURPOSE: Adjust the Time value based on the requested Power
     // FORMAT:  access level, return type or void, methodName(arguments){
-    public void spinRight(double Time, double Power){
+    public static void spinRight(double Time, double Power){
         final double adjustedTime = adjustTimeBasedOnPower(Time,Power);
         leftDriveMotor.setPower(Power);
         rightDriveMotor.setPower(-Power);
@@ -110,7 +82,7 @@ public class DC_Motor_and_Servo_Methods_v00 {
     // METHOD:  spinLeft(Time,Power)
     // PURPOSE: Adjust the Time value based on the requested Power
     // FORMAT:  access level, return type or void, methodName(arguments){
-    public void spinLeft(long Time, double Power){
+    public static void spinLeft(long Time, double Power){
         final double adjustedTime = adjustTimeBasedOnPower(Time,Power);
         leftDriveMotor.setPower(-Power);
         rightDriveMotor.setPower(Power);

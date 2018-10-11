@@ -28,7 +28,7 @@ package org.firstinspires.ftc.teamcode;
         import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
         //
         // TODO:  Is this where we tell this file how/where to find the custom METHODS stored in external file?
-        //import TeamCode.src.main.java.org.firstinspires.ftc.teamcode;    // <<-- is that even close???
+        import org.firstinspires.ftc.teamcode.MotorMethods_v00;    // <<-- is that even close???
 //
 //      2. Utilities
         import com.qualcomm.robotcore.util.ElapsedTime;
@@ -75,7 +75,7 @@ public class AUTON_externalMethods_v00 extends LinearOpMode {
     @Override
     // Call runOpMode() METHOD from the parent CLASS of LinearOpMode
     // FORMAT:  access_level, return_type or void, methodName(arguments), type of errors or exception {
-    public void runOpMode() throws InterruptedException  {              
+    public void runOpMode() throws InterruptedException {
         // SET HARDWARE VARIABLE VALUES
         // FORMAT:  variableName = hardwareMap.hardwareType.get("nameInHardwareMap");
         leftDriveMotor  = hardwareMap.dcMotor.get("leftDriveMotor");
@@ -93,8 +93,7 @@ public class AUTON_externalMethods_v00 extends LinearOpMode {
         //
         // SET ALL MOTORS TO DESIRED STARTING STATUS
         //      DC Motors
-        leftDriveMotor.setPower(0);                                     // All DC motors STOPPED
-        rightDriveMotor.setPower(0);
+        MotorMethods_v00.stopDriveMotors(leftDriveMotor,rightDriveMotor,MOTOR_STOP);
         //
         // ****************************************************************************************************************
         // END OF PREPARATIONS
@@ -120,40 +119,40 @@ public class AUTON_externalMethods_v00 extends LinearOpMode {
         telemetry.addData("Status", "Drive FORWARD");
         telemetry.update();
         //
-        driveForward(DRIVE_TIME_START_TO_CHECKPOINT_ONE,DRIVE_POWER_FAST);
+        MotorMethods_v00.driveForward(DRIVE_TIME_START_TO_CHECKPOINT_ONE,DRIVE_POWER_FAST);
         //
         //   2.  STOP driving
-        stopDriveMotors();
+        MotorMethods_v00.stopDriveMotors(leftDriveMotor,rightDriveMotor,MOTOR_STOP);
         sleep(1000);
         //
         //   3.  Spin LEFT, FAST, 90 degrees
         telemetry.addData("Status", "Spin LEFT 90deg");
         telemetry.update();
         //
-        spinLeft(DRIVE_TIME_90_DEG_TURN,DRIVE_POWER_MEDIUM);
+        MotorMethods_v00.spinLeft(DRIVE_TIME_90_DEG_TURN,DRIVE_POWER_MEDIUM);
         //
         //   4.  STOP spinning
-        stopDriveMotors();
-        sleep(1000);                                
+        MotorMethods_v00.stopDriveMotors(leftDriveMotor,rightDriveMotor,MOTOR_STOP);
+        sleep(1000);
         //
         //   5.  Drive FORWARD, FAST, from CHECKPOINT ONE to CHECKPOINT TWO
         telemetry.addData("Status", "Drive FORWARD");       
         telemetry.update();                                         
         //
-        driveForward(DRIVE_TIME_CHECKPOINT_ONE_TO_TWO,DRIVE_POWER_FAST);
+        MotorMethods_v00.driveForward(DRIVE_TIME_CHECKPOINT_ONE_TO_TWO,DRIVE_POWER_FAST);
         //
         //   6.  STOP driving
-        stopDriveMotors();
+        MotorMethods_v00.stopDriveMotors(leftDriveMotor,rightDriveMotor,MOTOR_STOP);
         sleep(1000);                               
         //
         //   7.  Spin RIGHT, FAST, 45 degrees
         telemetry.addData("Status", "Spin RIGHT 45deg");
         telemetry.update();
         //
-        spinRight(DRIVE_TIME_45_DEG_TURN,DRIVE_POWER_FAST);
+        MotorMethods_v00.spinRight(DRIVE_TIME_45_DEG_TURN,DRIVE_POWER_FAST);
         //
         //   8.  STOP spinning
-        stopDriveMotors();
+        MotorMethods_v00.stopDriveMotors(leftDriveMotor,rightDriveMotor,MOTOR_STOP);
         //
         //   9.  Wait for Teleop
     }
@@ -163,113 +162,6 @@ public class AUTON_externalMethods_v00 extends LinearOpMode {
     // END of AUTONOMOUS code
     // ****************************************************************************************************************
     //
-    // TODO:    Move METHODS below to external file
-    //          Make this file aware of how to find those METHODS (import?)
-    // ****************************************************************************************************************
-    // BEGIN LOCALLY-DEFINED METHODS
-    // ****************************************************************************************************************
-    // NOTE:    METHODS are sections of code that are written once but can be used ("called") by the program multiple times.
-    //          - A METHOD can have all of its values set internally (see robotStop, below),
-    //            or use values passed to it each time the program calls the METHOD (see driveForward, below).
-    //          - VARIABLES allow the METHOD's code to be written once but adapt to different situations in the
-    //            section of code that is calling it.
-    //
-    // ********
-    // METHOD:  stopDriveMotors()
-    // PURPOSE: Stop all motors at current location by setting all power to zero
-    // FORMAT:  access level, return type or void, methodName(arguments){
-    public void stopDriveMotors(){                                // The empty "()" section means that this method
-        leftDriveMotor.setPower(MOTOR_STOP);                //      does not rely on values passed into it
-        rightDriveMotor.setPower(MOTOR_STOP);               //      from the section of code that calls it, and
-        //      uses the values entered directly here
-        //      (MOTOR_STOP in this case)
-    }
-    // END of METHOD stopDriveMotors
-    // ********
-    //
-    // ********
-    // METHOD:  adjustTimeBasedOnPower(Time,Power)
-    // PURPOSE: Adjust the Time value based on the requested Power value
-    // NOTE:    == means "____ is currently equal to ____"
-    //           = means "____ is now equal to ____"
-    // FORMAT:  access level, return type or void, methodName(arguments){
-    public double adjustTimeBasedOnPower(double Time, double Power){    // NOTE:    Nested IF / ELSE IF statements could be used
-        //          For clarity, separate IF statements are used
-        if (Power == DRIVE_POWER_MEDIUM){
-            Time = Time * DRIVE_TIME_ADJUSTER_FOR_POWER_MED;            // Increase Time to compensate for reduced power, or
-        }                                                               // Leave Power unchanged if Power is not DRIVE_POWER_MEDIUM
-        //
-        if (Power == DRIVE_POWER_SLOW){
-            Time = Time * DRIVE_TIME_ADJUSTER_FOR_POWER_SLOW;           // Increase Time to compensate for reduced power, or
-        }                                                               // Leave Power unchanged if Power is not DRIVE_POWER_SLOW
-        return Time;
-    }
-    // END of METHOD adjustTimeBasedOnPower
-    // ********
-    //
-    // ********
-    // METHOD:  driveForward(Time,Power)
-    // PURPOSE: Adjust the Time value based on the requested Power
-    // FORMAT:  access level, return type or void, methodName(arguments){
-    public void driveForward(double Time, double Power){                // The variable names Time and Power will be assigned
-        //      to the values passed into the method, in the order
-        //      they are received
-        final double adjustedTime = adjustTimeBasedOnPower(Time,Power); // Declare new variable to hold result of calling the
-        //      adjustTimeBasedOnPower METHOD
-        //      and immediately define it as the result
-        //      of that METHOD call
-        //
-        leftDriveMotor.setPower(Power);                                 // Run motor with passed Power value
-        rightDriveMotor.setPower(Power);                                // Run motor with passed Power value
-        sleep((long) adjustedTime);                                     // Wait here in code for duration of passed
-        //      adjustedTime value
-        //      (allows motors to turn for duration of adjustedTime)
-    }
-    // END of METHOD driveForward
-    // ********
-    // ********
-    // METHOD:  spinRight(Time,Power)
-    // PURPOSE: Adjust the Time value based on the requested Power
-    // FORMAT:  access level, return type or void, methodName(arguments){
-    public void spinRight(double Time, double Power){                   // The variable names Time and Power will be assigned
-        //      to the values passed into the method, in the order
-        //      they are received
-        final double adjustedTime = adjustTimeBasedOnPower(Time,Power); // Declare new variable to hold result of calling the
-        //      adjustTimeBasedOnPower METHOD
-        //      and immediately define it as the result
-        //      of that METHOD call
-        //
-        leftDriveMotor.setPower(Power);                                 // Run motor with passed Power value
-        rightDriveMotor.setPower(-Power);                               // Run motor with passed Power value inverted
-        //      so motor will rotate in reverse
-        sleep((long) adjustedTime);                                     // Wait here in code for duration of passed
-        //      adjustedTime value
-        //      (allows motors to turn for duration of adjustedTime)
-    }
-    // END of METHOD spinRight
-    // ********
-    // ********
-    // METHOD:  spinLeft(Time,Power)
-    // PURPOSE: Adjust the Time value based on the requested Power
-    // FORMAT:  access level, return type or void, methodName(arguments){
-    public void spinLeft(long Time, double Power){                      // The variable names Time and Power will be assigned
-        //      to the values passed into the method, in the order
-        //      they are received
-        final double adjustedTime = adjustTimeBasedOnPower(Time,Power); // Declare new variable to hold result of calling the
-        //      adjustTimeBasedOnPower METHOD
-        //      and immediately define it as the result
-        //      of that METHOD call
-        //
-        leftDriveMotor.setPower(-Power);                                // Run motor with passed Power value inverted
-        //      so motor will rotate in reverse
-        rightDriveMotor.setPower(Power);                                // Run motor with passed Power value
-        sleep((long) adjustedTime);                                     // Wait here in code for duration of passed
-        //      adjustedTime value
-        //      (allows motors to turn for duration of adjustedTime)
-    }
-    // END of METHOD spinLeft
-    // ********
-    // ********
 }
 // END of CLASS AUTON_externalMethods_v00
 //
