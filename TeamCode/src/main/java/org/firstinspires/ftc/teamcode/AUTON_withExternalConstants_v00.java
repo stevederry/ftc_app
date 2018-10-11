@@ -2,11 +2,11 @@
 // *************************************************************************************************************************
 // Edit Date:   October 11, 2018 @ 08:38
 // Clone Date:  October 11, 2018 @ 08:36
-// Team Name:   _____
-// Team Number: _____
+// Team Name:   Lightning Robotics
+// Team Number: FRC862
 // Code Type:   OpMode for AUTONOMOUS
 // NOTE:        This code is based on AUTON_withMethods_v01d,
-//              but adds custom METHODS stored in this file.
+//              but moves CONSTANTS to Constants CLASS in separate Constants.java file
 // Description: Order of operations
 //               0.  Start at predetermined location (positioned by drivers prior to game start)
 //               1.  Drive FORWARD, FAST, to CHECKPOINT_ONE
@@ -32,6 +32,7 @@ package org.firstinspires.ftc.teamcode;
 //      1. Classes
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import org.firstinspires.ftc.teamcode.Constants;
 //
 //      2. Utilities
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -112,9 +113,7 @@ public class AUTON_withExternalConstants_v00 extends LinearOpMode {
         telemetry.update();                                             // Send info to controller phone
         //
         // SET ALL MOTORS TO DESIRED STARTING STATUS
-        //      DC Motors
-        leftDriveMotor.setPower(MOTOR_STOP);                            // All DC motors STOPPED
-        rightDriveMotor.setPower(MOTOR_STOP);
+        stopDriveMotors();                                
         //
         // ****************************************************************************************************************
         // END OF PREPARATIONS
@@ -122,9 +121,9 @@ public class AUTON_withExternalConstants_v00 extends LinearOpMode {
         //
         // WAIT for driver to press PLAY
         waitForStart();                                                 // The waitForStart() METHOD is part of
-        //    the LinearOpMode CLASS,
-        //    which is defined elsewhere in
-        //    the FTC resource code
+                                                                        //    the LinearOpMode CLASS,
+                                                                        //    which is defined elsewhere in
+                                                                        //    the FTC resource code
         //
         // ****************************************************************************************************************
         // AFTER driver presses PLAY, the ROBOT CONTROLLER PHONE will execute the code below this line
@@ -138,26 +137,22 @@ public class AUTON_withExternalConstants_v00 extends LinearOpMode {
         //
         //   1.  Drive FORWARD, FAST, to CHECKPOINT_ONE
 
-        telemetry.addData("Status", "Drive FORWARD");       // Specific info to be sent to controller phone
+        telemetry.addData("Status", "Drive FORWARD");                   // Specific info to be sent to controller phone
         telemetry.update();                                             // Send info to controller phone
 
-
-
-        driveForward(DRIVE_TIME_START_TO_CHECKPOINT_ONE,DRIVE_POWER_FAST);
+        driveForward(Constants.DRIVE_TIME_START_TO_CHECKPOINT_ONE,Constants.DRIVE_POWER_FAST);
         //
         //   2.  STOP driving
-        stopDriveMotors();                                      // Call stopDriveMotors METHOD to set drive motor
-                                                                //      powers to zero
-        sleep(1000);                                //  Wait 1 second
+        stopDriveMotors();                                              // Call stopDriveMotors METHOD to set drive motor
+                                                                        //      powers to zero
+        sleep(1000);                                                    //  Wait 1 second
         //
         //   3.  Spin LEFT, FAST, 90 degrees
 
-        telemetry.addData("Status", "Spin LEFT 90deg");       // Specific info to be sent to controller phone
+        telemetry.addData("Status", "Spin LEFT 90deg");                 // Specific info to be sent to controller phone
         telemetry.update();                                             // Send info to controller phone
 
-
-
-        spinLeft(DRIVE_TIME_90_DEG_TURN,DRIVE_POWER_MEDIUM);
+        spinLeft(Constants.DRIVE_TIME_90_DEG_TURN,Constants.DRIVE_POWER_MEDIUM);
         //
         //   4.  STOP spinning
         stopDriveMotors();
@@ -168,8 +163,7 @@ public class AUTON_withExternalConstants_v00 extends LinearOpMode {
         telemetry.addData("Status", "Drive FORWARD");       // Specific info to be sent to controller phone
         telemetry.update();                                             // Send info to controller phone
 
-
-        driveForward(DRIVE_TIME_CHECKPOINT_ONE_TO_TWO,DRIVE_POWER_FAST);
+        driveForward(Constants.DRIVE_TIME_CHECKPOINT_ONE_TO_TWO,Constants.DRIVE_POWER_FAST);
         //
         //   6.  STOP driving
         stopDriveMotors();
@@ -180,8 +174,7 @@ public class AUTON_withExternalConstants_v00 extends LinearOpMode {
         telemetry.addData("Status", "Spin RIGHT 45deg");       // Specific info to be sent to controller phone
         telemetry.update();                                             // Send info to controller phone
 
-
-        spinRight(DRIVE_TIME_45_DEG_TURN,DRIVE_POWER_FAST);
+        spinRight(Constants.DRIVE_TIME_45_DEG_TURN,Constants.DRIVE_POWER_FAST);
         //
         //   8.  STOP spinning
         stopDriveMotors();
@@ -208,8 +201,8 @@ public class AUTON_withExternalConstants_v00 extends LinearOpMode {
     // PURPOSE: Stop all motors at current location by setting all power to zero
     // FORMAT:  access level, return type or void, methodName(arguments){
     public void stopDriveMotors(){                                // The empty "()" section means that this method
-        leftDriveMotor.setPower(MOTOR_STOP);                //      does not rely on values passed into it
-        rightDriveMotor.setPower(MOTOR_STOP);               //      from the section of code that calls it, and
+        leftDriveMotor.setPower(Constants.MOTOR_STOP);                //      does not rely on values passed into it
+        rightDriveMotor.setPower(Constants.MOTOR_STOP);               //      from the section of code that calls it, and
                                                             //      uses the values entered directly here
                                                             //      (MOTOR_STOP in this case)
     }
