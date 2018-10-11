@@ -50,7 +50,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 //              the DRIVER CONTROL phone to have a shortened name that sorts in a desired order.
 //          The GROUP property can be any text that helps the user group this program with related programs
 // FORMAT:  @type(name="OpMode_Name", group="GroupName")
-@Autonomous(name="AUTON_withMethods_v01d", group="Derry_FTC_Templates")
+@Autonomous(name="AUTON_withExternalConstants_v00", group="Derry_FTC_Templates")
 //
 // DEFINE class
 // NOTE:    - All JAVA files must have at least one public CLASS, but can have more,
@@ -61,7 +61,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 //          - Not all CLASSES are OpModes.
 //          - The public CLASS name MUST match the FILENAME (EXcluding the ".java" extension)
 // FORMAT:  access level, class class_name, extends NameOfClass_this_new_class_extends_(if_any) {
-public class AUTON_withMethods_v01d extends LinearOpMode {
+public class AUTON_withExternalConstants_v00 extends LinearOpMode {
     // DECLARE OpMode MEMBERS
     // 1. Utilities
     //    FORMAT:   access level, UtilityName runtime = new UtilityName();
@@ -73,40 +73,8 @@ public class AUTON_withMethods_v01d extends LinearOpMode {
     DcMotor leftDriveMotor;
     DcMotor rightDriveMotor;
     //
-    // DEFINE CODE CONSTANTS
-    // NOTE:    CONSTANTS should generally be defined outside of METHOD bodies,
-    //          instead of inside runOpMode() or any other METHOD,
-    //          especially if you ever want to access them from outside of this CLASS.
-    //
-    //          CONSTANTS can also be defined in separate JAVA file(s) as long as:
-    //          1.  Those files are part of the same project as the file (like this one) that
-    //              needs to use the CONSTANTS
-    //          2.  The CONSTANTS are declared as public so that they can be accessed from
-    //              outside the JAVA file(s) in which they are located
-    //
-    // FORMAT:  access_level static final value_type VALUE_NAME = assigned_value;
-    //          - public means it can be accessed from other classes
-    //          - static means there is only one copy no matter how many instances of the CLASS you create
-    //          - final means its value never changes (constant)
-    //          - long, double, etc. is the type of value held by the variable
-    //
-    // Drive times: all values are in milliseconds, and all values assume motors are using DRIVE_POWER_FAST value
-    public static final long DRIVE_TIME_START_TO_CHECKPOINT_ONE     = 3000;
-    public static final long DRIVE_TIME_CHECKPOINT_ONE_TO_TWO       = 2000;
-    public static final long DRIVE_TIME_45_DEG_TURN                 = 250;
-    public static final long DRIVE_TIME_90_DEG_TURN                 = DRIVE_TIME_45_DEG_TURN * 2;
-    //
-    //
-    // Drive powers (speeds): all values use range of 0 to 1
-    public static final double MOTOR_STOP                           = 0;
-    public static final double DRIVE_POWER_FAST                     = .8;
-    public static final double DRIVE_POWER_ADJUSTER                 = 2;
-    public static final double DRIVE_POWER_MEDIUM                   = DRIVE_POWER_FAST / DRIVE_POWER_ADJUSTER;
-    public static final double DRIVE_POWER_SLOW                     = DRIVE_POWER_FAST / (DRIVE_POWER_ADJUSTER * 2);
-    public static final double DRIVE_TIME_ADJUSTER_FOR_POWER_MED    = DRIVE_POWER_ADJUSTER;
-    public static final double DRIVE_TIME_ADJUSTER_FOR_POWER_SLOW   = DRIVE_POWER_ADJUSTER * 2;
-    //
-    //
+    // CONSTANTS were defined here but have been moved to Constants CLASS in separate Constants.java file
+  //
     @Override
     // Override is a note to the compiler stating that you expect that you are replacing a METHOD
     //    with the same name in the parent (extends ______ class) with this METHOD. This way, if you typo/change
@@ -332,7 +300,7 @@ public class AUTON_withMethods_v01d extends LinearOpMode {
     // ********
     // ********
 }
-// END of CLASS AUTON_withMethods_v01d
+// END of CLASS AUTON_withExternalConstants_v00
 //
 // *************************************************************************************************************************
 // END OF FILE
