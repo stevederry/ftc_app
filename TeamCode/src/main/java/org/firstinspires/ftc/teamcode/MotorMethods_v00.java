@@ -93,7 +93,7 @@ public class MotorMethods_v00 {
     // ********
     // ********
 }
-// END of CLASS DC_Motor_and_Servo_Methods_v00
+// END of CLASS MotorMethods_v00
 //
 // *************************************************************************************************************************
 // END OF FILE
