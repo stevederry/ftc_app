@@ -36,6 +36,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 //      2. Utilities
 import com.qualcomm.robotcore.util.ElapsedTime;
 //
+//
+// TODO:  Can this section for Hardware Types be removed because the robot is defined in the external Robot.java file?
 //      3. Hardware Types (ONE import per TYPE of hardware, NOT for each INSTANCE of that TYPE of hardware)
 import com.qualcomm.robotcore.hardware.DcMotor;
 //
@@ -66,7 +68,8 @@ public class AUTON_noMethods_v01a extends LinearOpMode {
     // 1. Utilities
     //    FORMAT:   access level, UtilityName runtime = new UtilityName();
     private ElapsedTime runtime = new ElapsedTime();        // Use private unless you need access from other classes.
-    // 
+    //
+    // TODO:  Can this section for Hardware Types be removed because the robot is defined in the external Robot.java file?
     // 2. Hardware
     //    NOTE:     This section tells the code that, later, these names will be used to refer to items on the robot.
     //    FORMAT:   HardwareType variableName;
@@ -90,6 +93,7 @@ public class AUTON_noMethods_v01a extends LinearOpMode {
     //          - final means its value never changes (constant)
     //          - long, double, etc. is the type of value held by the variable
     //
+    // TODO:  Constants can be moved to separate file
     // Drive powers (speeds): all values use range of 0 to 1
     public static final double MOTOR_STOP               = 0;
     public static final double DRIVE_POWER_FAST         = 0.8;
@@ -108,6 +112,8 @@ public class AUTON_noMethods_v01a extends LinearOpMode {
                                                                         // "InterruptedException" keeps the program 
                                                                         //    from freezing completely if there is an error
                                                                         //    that it does not know how to handle
+      //
+      // TODO:  Can this section for Hardware Types be removed because the robot is defined in the external Robot.java file?
       // SET HARDWARE VARIABLE VALUES
       // NOTE:  - The robot's pieces are named in the hardwareMap using the software on the ROBOT CONTROLLER PHONE.
       //        - Values after 'get' MUST match EXACTLY the names used when the robot configuration was 
